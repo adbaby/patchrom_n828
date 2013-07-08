@@ -21,7 +21,8 @@
         Landroid/content/pm/PackageParser$ParseComponentArgs;,
         Landroid/content/pm/PackageParser$ParsePackageItemArgs;,
         Landroid/content/pm/PackageParser$SplitPermissionInfo;,
-        Landroid/content/pm/PackageParser$NewPermissionInfo;
+        Landroid/content/pm/PackageParser$NewPermissionInfo;,
+        Landroid/content/pm/PackageParser$Injector;
     }
 .end annotation
 
@@ -7125,6 +7126,10 @@
     .parameter "outInfo"
     .parameter "outError"
     .parameter "isActivity"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lorg/xmlpull/v1/XmlPullParserException;,
@@ -7154,20 +7159,23 @@
 
     move-result v7
 
-    .line 3054
     .local v7, priority:I
+    move/from16 v0, p4
+
+    invoke-static {v0, v7}, Landroid/content/pm/PackageParser$Injector;->checkPriority(II)I
+
+    move-result v13
+
     move-object/from16 v0, p5
 
-    invoke-virtual {v0, v7}, Landroid/content/pm/PackageParser$IntentInfo;->setPriority(I)V
+    invoke-virtual {v0, v13}, Landroid/content/pm/PackageParser$IntentInfo;->setPriority(I)V
 
-    .line 3056
     const/4 v13, 0x0
 
     invoke-virtual {v8, v13}, Landroid/content/res/TypedArray;->peekValue(I)Landroid/util/TypedValue;
 
     move-result-object v11
 
-    .line 3058
     .local v11, v:Landroid/util/TypedValue;
     if-eqz v11, :cond_0
 
@@ -7916,6 +7924,10 @@
     .parameter "parser"
     .parameter "flags"
     .parameter "outError"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lorg/xmlpull/v1/XmlPullParserException;,
@@ -8557,6 +8569,12 @@
     move-object/from16 v0, v37
 
     invoke-virtual {v0, v3}, Landroid/content/res/TypedArray;->getNonResourceString(I)Ljava/lang/String;
+
+    move-result-object v3
+
+    move-object/from16 v0, v34
+
+    invoke-static {v0, v3}, Landroid/content/pm/PackageParser$Injector;->filterNameError(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v29
 
@@ -11157,6 +11175,10 @@
     .parameter "attrs"
     .parameter "flags"
     .parameter "outError"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;,
@@ -11298,6 +11320,10 @@
     .line 826
     :cond_6
     invoke-virtual {v1}, Ljava/lang/String;->intern()Ljava/lang/String;
+
+    move-result-object v9
+
+    invoke-static {v4, v9}, Landroid/content/pm/PackageParser$Injector;->filterNameError(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -11978,6 +12004,10 @@
     .parameter "attrs"
     .parameter "flags"
     .parameter "outError"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lorg/xmlpull/v1/XmlPullParserException;,
@@ -14779,11 +14809,23 @@
 
     move-result-object v13
 
-    .line 648
     .local v13, localCerts:[Ljava/security/cert/Certificate;
     if-nez v13, :cond_5
 
-    .line 649
+    move-object/from16 v0, p1
+
+    iget-object v0, v0, Landroid/content/pm/PackageParser$Package;->packageName:Ljava/lang/String;
+
+    move-object/from16 v18, v0
+
+    move-object/from16 v0, v18
+
+    invoke-static {v12, v0}, Lmiui/content/pm/ExtraPackageManager;->isTrustedAppEntry(Ljava/util/jar/JarEntry;Ljava/lang/String;)Z
+
+    move-result v18
+
+    if-nez v18, :cond_3
+
     const-string v18, "PackageParser"
 
     new-instance v19, Ljava/lang/StringBuilder;
@@ -15365,6 +15407,9 @@
     .parameter "destCodePath"
     .parameter "metrics"
     .parameter "flags"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 483
@@ -15529,12 +15574,10 @@
 
     move-result v25
 
-    .line 512
     .local v25, cookie:I
     if-eqz v25, :cond_4
 
-    .line 513
-    new-instance v32, Landroid/content/res/Resources;
+    new-instance v32, Landroid/content/res/MiuiResources;
 
     const/4 v6, 0x0
 
@@ -15542,7 +15585,7 @@
 
     move-object/from16 v1, p3
 
-    invoke-direct {v0, v5, v1, v6}, Landroid/content/res/Resources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;)V
+    invoke-direct {v0, v5, v1, v6}, Landroid/content/res/MiuiResources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;)V
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
 

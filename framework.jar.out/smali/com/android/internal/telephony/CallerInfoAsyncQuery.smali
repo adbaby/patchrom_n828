@@ -10,7 +10,8 @@
         Lcom/android/internal/telephony/CallerInfoAsyncQuery$CallerInfoAsyncQueryHandler;,
         Lcom/android/internal/telephony/CallerInfoAsyncQuery$QueryPoolException;,
         Lcom/android/internal/telephony/CallerInfoAsyncQuery$CookieWrapper;,
-        Lcom/android/internal/telephony/CallerInfoAsyncQuery$OnQueryCompleteListener;
+        Lcom/android/internal/telephony/CallerInfoAsyncQuery$OnQueryCompleteListener;,
+        Lcom/android/internal/telephony/CallerInfoAsyncQuery$Injector;
     }
 .end annotation
 
@@ -264,6 +265,9 @@
     .parameter "number"
     .parameter "listener"
     .parameter "cookie"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 387
@@ -397,7 +401,11 @@
     :cond_0
     sget-object v0, Landroid/provider/ContactsContract$PhoneLookup;->CONTENT_FILTER_URI:Landroid/net/Uri;
 
-    invoke-static {p2}, Landroid/net/Uri;->encode(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {p2}, Lcom/android/internal/telephony/CallerInfoAsyncQuery$Injector;->getPhoneNumber(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v1}, Landroid/net/Uri;->encode(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 

@@ -3,6 +3,14 @@
 .source "DateFormat.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Landroid/text/format/DateFormat$Injector;
+    }
+.end annotation
+
+
 # static fields
 .field public static final AM_PM:C = 'a'
 
@@ -1676,6 +1684,9 @@
 .method public static getLongDateFormat(Landroid/content/Context;)Ljava/text/DateFormat;
     .locals 1
     .parameter "context"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 424

@@ -3,6 +3,14 @@
 .source "UiModeManagerService.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/android/server/UiModeManagerService$Injector;
+    }
+.end annotation
+
+
 # static fields
 .field private static final ENABLE_LAUNCH_CAR_DOCK_APP:Z = true
 
@@ -47,6 +55,12 @@
 .field final mLock:Ljava/lang/Object;
 
 .field private mNightMode:I
+
+.field mNormalType:I
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_FIELD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+.end field
 
 .field private mNotificationManager:Landroid/app/NotificationManager;
 

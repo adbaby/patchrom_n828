@@ -155,6 +155,12 @@
 
     invoke-virtual {v4, v5}, Landroid/widget/ImageView;->setImageResource(I)V
 
+    iget-object v4, v1, Landroid/preference/PreferenceActivity$HeaderAdapter$HeaderViewHolder;->icon:Landroid/widget/ImageView;
+
+    iget v5, v0, Landroid/preference/PreferenceActivity$Header;->iconRes:I
+
+    invoke-static {v4, v5}, Landroid/preference/PreferenceActivity$Injector;->setIconVisible(Landroid/widget/ImageView;I)V
+
     .line 283
     iget-object v4, v1, Landroid/preference/PreferenceActivity$HeaderAdapter$HeaderViewHolder;->title:Landroid/widget/TextView;
 

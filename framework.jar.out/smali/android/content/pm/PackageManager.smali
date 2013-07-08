@@ -160,6 +160,18 @@
 
 .field public static final INSTALL_ALLOW_DOWNGRADE:I = 0x80
 
+.field public static final HAS_ACTIVITY:I = 0x20000
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_FIELD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+.end field
+
+.field public static final HAS_ACTIVITY_OR_SERVICES:I = 0x40000
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_FIELD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+.end field
+
 .field public static final INSTALL_ALLOW_TEST:I = 0x4
 
 .field public static final INSTALL_ALL_USERS:I = 0x40

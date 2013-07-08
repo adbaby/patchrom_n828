@@ -1019,6 +1019,9 @@
 .method public systemReady(Z)V
     .locals 17
     .parameter "safeMode"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 70

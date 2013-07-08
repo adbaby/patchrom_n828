@@ -6,7 +6,8 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Landroid/media/MediaFile$MediaFileType;
+        Landroid/media/MediaFile$MediaFileType;,
+        Landroid/media/MediaFile$Injector;
     }
 .end annotation
 
@@ -391,14 +392,12 @@
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 227
-    invoke-static {}, Landroid/media/MediaFile;->isWMAEnabled()Z
+    invoke-static {}, Landroid/media/MediaFile$Injector;->isWMAEnabled()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 232
     :cond_0
     const-string v0, "OGG"
 
@@ -518,180 +517,162 @@
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 252
     const-string v0, "RTX"
 
     const-string v1, "audio/midi"
 
     invoke-static {v0, v4, v1}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 253
     const-string v0, "OTA"
 
     const-string v1, "audio/midi"
 
     invoke-static {v0, v4, v1}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 254
     const-string v0, "MXMF"
 
     const-string v1, "audio/midi"
 
     invoke-static {v0, v4, v1}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 256
+    invoke-static {}, Landroid/media/MediaFile$Injector;->addAPE()V
+
     const-string v0, "MPEG"
 
     const/16 v1, 0x12d
 
-    const-string/jumbo v2, "video/mpeg"
+    const-string v2, "video/mpeg"
 
     invoke-static {v0, v1, v2, v7}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;I)V
 
-    .line 257
     const-string v0, "MPG"
 
     const/16 v1, 0x12d
 
-    const-string/jumbo v2, "video/mpeg"
+    const-string v2, "video/mpeg"
 
     invoke-static {v0, v1, v2, v7}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;I)V
 
-    .line 258
     const-string v0, "MP4"
 
     const/16 v1, 0x12d
 
-    const-string/jumbo v2, "video/mp4"
+    const-string v2, "video/mp4"
 
     invoke-static {v0, v1, v2, v7}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;I)V
 
-    .line 259
     const-string v0, "M4V"
 
     const/16 v1, 0x12e
 
-    const-string/jumbo v2, "video/mp4"
+    const-string v2, "video/mp4"
 
     invoke-static {v0, v1, v2, v7}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;I)V
 
-    .line 260
     const-string v0, "3GP"
 
     const/16 v1, 0x12f
 
-    const-string/jumbo v2, "video/3gpp"
+    const-string v2, "video/3gpp"
 
     const v3, 0xb984
 
     invoke-static {v0, v1, v2, v3}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;I)V
 
-    .line 261
     const-string v0, "3GPP"
 
     const/16 v1, 0x12f
 
-    const-string/jumbo v2, "video/3gpp"
+    const-string v2, "video/3gpp"
 
     const v3, 0xb984
 
     invoke-static {v0, v1, v2, v3}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;I)V
 
-    .line 262
     const-string v0, "3G2"
 
     const/16 v1, 0x130
 
-    const-string/jumbo v2, "video/3gpp2"
+    const-string v2, "video/3gpp2"
 
     const v3, 0xb984
 
     invoke-static {v0, v1, v2, v3}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;I)V
 
-    .line 263
     const-string v0, "3GPP2"
 
     const/16 v1, 0x130
 
-    const-string/jumbo v2, "video/3gpp2"
+    const-string v2, "video/3gpp2"
 
     const v3, 0xb984
 
     invoke-static {v0, v1, v2, v3}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;I)V
 
-    .line 264
     const-string v0, "MKV"
 
     const/16 v1, 0x133
 
-    const-string/jumbo v2, "video/x-matroska"
+    const-string v2, "video/x-matroska"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 265
     const-string v0, "WEBM"
 
     const/16 v1, 0x136
 
-    const-string/jumbo v2, "video/webm"
+    const-string v2, "video/webm"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 266
     const-string v0, "TS"
 
     const/16 v1, 0x134
 
-    const-string/jumbo v2, "video/mp2ts"
+    const-string v2, "video/mp2ts"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 267
     const-string v0, "M2TS"
 
     const/16 v1, 0x134
 
-    const-string/jumbo v2, "video/mp2ts"
+    const-string v2, "video/mp2ts"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 268
     const-string v0, "AVI"
 
     const/16 v1, 0x135
 
-    const-string/jumbo v2, "video/avi"
+    const-string v2, "video/avi"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 269
     const-string v0, "MOV"
 
     const/16 v1, 0x18d
 
-    const-string/jumbo v2, "video/quicktime"
+    const-string v2, "video/quicktime"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 270
     const-string v0, "QT"
 
     const/16 v1, 0x18d
 
-    const-string/jumbo v2, "video/quicktime"
+    const-string v2, "video/quicktime"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 280
     const-string v0, "FLV"
 
     const/16 v1, 0x18e
 
-    const-string/jumbo v2, "video/x-flv"
+    const-string v2, "video/x-flv"
 
     invoke-static {v0, v1, v2}, Landroid/media/MediaFile;->addFileType(Ljava/lang/String;ILjava/lang/String;)V
 
-    .line 281
     const-string v0, "FLA"
 
     const/16 v1, 0xc4
@@ -1533,6 +1514,12 @@
     return v0
 
     :cond_2
+    invoke-static {p0}, Landroid/media/MediaFile$Injector;->isFFMpegAudoFileType(I)Z
+
+    move-result v1
+
+    if-nez v1, :cond_1
+
     const/4 v0, 0x0
 
     goto :goto_0

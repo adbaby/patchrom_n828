@@ -3,6 +3,14 @@
 .source "CdmaDataConnectionTracker.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker$Injector;
+    }
+.end annotation
+
+
 # static fields
 .field private static final DATA_CONNECTION_ACTIVE_PH_LINK_DOWN:I = 0x1
 
@@ -3251,6 +3259,9 @@
 .method protected onDataSetupComplete(Landroid/os/AsyncResult;)V
     .locals 5
     .parameter "ar"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 621
@@ -3278,6 +3289,8 @@
     move-result v3
 
     if-eqz v3, :cond_1
+
+    invoke-static {p0}, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker$Injector;->onDataSetupComplete(Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;)V
 
     .line 628
     invoke-direct {p0, v1}, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;->notifyDefaultData(Ljava/lang/String;)V
@@ -3590,6 +3603,9 @@
     .locals 4
     .parameter "connId"
     .parameter "ar"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 657
@@ -3624,20 +3640,19 @@
 
     if-eqz v2, :cond_0
 
-    .line 660
     iget-object v0, p2, Landroid/os/AsyncResult;->userObj:Ljava/lang/Object;
 
     .end local v0           #reason:Ljava/lang/String;
     check-cast v0, Ljava/lang/String;
 
-    .line 662
     .restart local v0       #reason:Ljava/lang/String;
     :cond_0
     sget-object v2, Lcom/android/internal/telephony/DctConstants$State;->IDLE:Lcom/android/internal/telephony/DctConstants$State;
 
     invoke-virtual {p0, v2}, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;->setState(Lcom/android/internal/telephony/DctConstants$State;)V
 
-    .line 666
+    invoke-static {p0}, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker$Injector;->onDisconnectDone(Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;)V
+
     iget-boolean v2, p0, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;->mPendingRestartRadio:Z
 
     if-eqz v2, :cond_1

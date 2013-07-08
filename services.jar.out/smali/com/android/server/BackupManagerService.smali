@@ -31,7 +31,8 @@
         Lcom/android/server/BackupManagerService$RestoreParams;,
         Lcom/android/server/BackupManagerService$RestoreGetSetsParams;,
         Lcom/android/server/BackupManagerService$ProvisionedObserver;,
-        Lcom/android/server/BackupManagerService$BackupRequest;
+        Lcom/android/server/BackupManagerService$BackupRequest;,
+        Lcom/android/server/BackupManagerService$Injector;
     }
 .end annotation
 
@@ -7463,6 +7464,9 @@
     .parameter "doAllApps"
     .parameter "includeSystem"
     .parameter "pkgList"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 4993
@@ -7766,6 +7770,9 @@
 .method public fullRestore(Landroid/os/ParcelFileDescriptor;)V
     .locals 10
     .parameter "fd"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 5062
@@ -8290,6 +8297,18 @@
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
     throw v2
+.end method
+
+.method getContext()Landroid/content/Context;
+    .locals 1
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
+    .prologue
+    iget-object v0, p0, Lcom/android/server/BackupManagerService;->mContext:Landroid/content/Context;
+
+    return-object v0
 .end method
 
 .method public getCurrentTransport()Ljava/lang/String;

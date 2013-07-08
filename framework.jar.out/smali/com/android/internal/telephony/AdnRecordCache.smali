@@ -47,6 +47,12 @@
     .end annotation
 .end field
 
+.field private mAdnCacheManager:Lcom/android/internal/telephony/AdnCacheManager;
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_FIELD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+.end field
+
 .field private mFh:Lcom/android/internal/telephony/IccFileHandler;
 
 .field private mLock:Ljava/lang/Object;
@@ -97,6 +103,9 @@
 .method public constructor <init>(Lcom/android/internal/telephony/IccFileHandler;)V
     .locals 2
     .parameter "fh"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     const/4 v1, 0x0
@@ -158,6 +167,12 @@
     move-result v0
 
     iput v0, p0, Lcom/android/internal/telephony/AdnRecordCache;->mSimId:I
+
+    new-instance v0, Lcom/android/internal/telephony/AdnCacheManager;
+
+    invoke-direct {v0, p0}, Lcom/android/internal/telephony/AdnCacheManager;-><init>(Lcom/android/internal/telephony/AdnRecordCache;)V
+
+    iput-object v0, p0, Lcom/android/internal/telephony/AdnRecordCache;->mAdnCacheManager:Lcom/android/internal/telephony/AdnCacheManager;
 
     .line 108
     return-void
@@ -725,6 +740,38 @@
     return-object v0
 .end method
 
+.method public getAdnCapacity()I
+    .locals 1
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/telephony/AdnRecordCache;->mAdnCacheManager:Lcom/android/internal/telephony/AdnCacheManager;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/AdnCacheManager;->getAdnCapacity()I
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public getFreeAdn()I
+    .locals 1
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/telephony/AdnRecordCache;->mAdnCacheManager:Lcom/android/internal/telephony/AdnCacheManager;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/AdnCacheManager;->getFreeAdn()I
+
+    move-result v0
+
+    return v0
+.end method
+
 .method public getRecordsIfLoaded(I)Ljava/util/ArrayList;
     .locals 1
     .parameter "efid"
@@ -902,6 +949,9 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 11
     .parameter "msg"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     const/4 v8, 0x0
@@ -1380,6 +1430,9 @@
     .parameter "efid"
     .parameter "extensionEf"
     .parameter "response"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     const/4 v3, 0x1
@@ -1447,28 +1500,26 @@
 
     invoke-virtual {p0, v2}, Lcom/android/internal/telephony/AdnRecordCache;->logd(Ljava/lang/String;)V
 
-    .line 527
     if-eqz v0, :cond_3
 
-    .line 528
     if-eqz p3, :cond_0
 
-    .line 529
+    iget-object v2, p0, Lcom/android/internal/telephony/AdnRecordCache;->mAdnCacheManager:Lcom/android/internal/telephony/AdnCacheManager;
+
+    invoke-virtual {v2, p1, v0}, Lcom/android/internal/telephony/AdnCacheManager;->handleAllAdnLikeLoaded(ILjava/util/ArrayList;)V
+
     invoke-static {p3}, Landroid/os/AsyncResult;->forMessage(Landroid/os/Message;)Landroid/os/AsyncResult;
 
     move-result-object v2
 
     iput-object v0, v2, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
-    .line 530
     invoke-virtual {p3}, Landroid/os/Message;->sendToTarget()V
 
-    .line 569
     :cond_0
     :goto_2
     return-void
 
-    .line 522
     .end local v0           #result:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/internal/telephony/AdnRecord;>;"
     :cond_1
     invoke-virtual {p0, p1}, Lcom/android/internal/telephony/AdnRecordCache;->getRecordsIfLoaded(I)Ljava/util/ArrayList;
@@ -1578,30 +1629,31 @@
 
 .method public reset()V
     .locals 1
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
-    .line 117
-    const-string/jumbo v0, "reset"
+    const-string v0, "reset"
 
     invoke-virtual {p0, v0}, Lcom/android/internal/telephony/AdnRecordCache;->logd(Ljava/lang/String;)V
 
-    .line 118
     iget-object v0, p0, Lcom/android/internal/telephony/AdnRecordCache;->adnLikeFiles:Landroid/util/SparseArray;
 
     invoke-virtual {v0}, Landroid/util/SparseArray;->clear()V
 
-    .line 119
     iget-object v0, p0, Lcom/android/internal/telephony/AdnRecordCache;->mUsimPhoneBookManager:Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;
 
     invoke-virtual {v0}, Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;->reset()V
 
-    .line 121
     invoke-direct {p0}, Lcom/android/internal/telephony/AdnRecordCache;->clearWaiters()V
 
-    .line 122
     invoke-direct {p0}, Lcom/android/internal/telephony/AdnRecordCache;->clearUserWriters()V
 
-    .line 124
+    iget-object v0, p0, Lcom/android/internal/telephony/AdnRecordCache;->mAdnCacheManager:Lcom/android/internal/telephony/AdnCacheManager;
+
+    invoke-virtual {v0}, Lcom/android/internal/telephony/AdnCacheManager;->reset()V
+
     return-void
 .end method
 
@@ -1628,9 +1680,11 @@
     .parameter "recordIndex"
     .parameter "pin2"
     .parameter "response"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
-    .line 215
     monitor-enter p0
 
     :try_start_0
@@ -1638,11 +1692,9 @@
 
     move-result v4
 
-    .line 216
     .local v4, extensionEF:I
     if-gez v4, :cond_1
 
-    .line 217
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1667,14 +1719,12 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 317
     :cond_0
     :goto_0
     monitor-exit p0
 
     return-void
 
-    .line 221
     :cond_1
     :try_start_1
     iget-object v1, p2, Lcom/android/internal/telephony/AdnRecord;->alphaTag:Ljava/lang/String;
@@ -1687,12 +1737,11 @@
 
     if-le v1, v2, :cond_2
 
-    .line 223
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v2, "the input length of alphaTag is too long: "
+    const-string v2, "the input length of alphaTag is too long: "
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -1718,7 +1767,6 @@
 
     goto :goto_0
 
-    .line 215
     .end local v4           #extensionEF:I
     :catchall_0
     move-exception v1
@@ -1727,7 +1775,6 @@
 
     throw v1
 
-    .line 230
     .restart local v4       #extensionEF:I
     :cond_2
     :try_start_2
@@ -1745,12 +1792,11 @@
 
     if-le v1, v2, :cond_3
 
-    .line 233
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v2, "the input length of additional number is too long: "
+    const-string v2, "the input length of additional number is too long: "
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -1772,9 +1818,12 @@
 
     invoke-direct {p0, v0, v1, v2}, Lcom/android/internal/telephony/AdnRecordCache;->sendErrorResponse(Landroid/os/Message;Ljava/lang/String;I)V
 
+    iget-object v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->mAdnCacheManager:Lcom/android/internal/telephony/AdnCacheManager;
+
+    invoke-virtual {v1, p1}, Lcom/android/internal/telephony/AdnCacheManager;->handleNonExistentAdnRecord(I)V
+
     goto :goto_0
 
-    .line 240
     :cond_3
     iget-object v1, p2, Lcom/android/internal/telephony/AdnRecord;->number:Ljava/lang/String;
 
@@ -1782,7 +1831,6 @@
 
     move-result v9
 
-    .line 241
     .local v9, num_length:I
     iget-object v1, p2, Lcom/android/internal/telephony/AdnRecord;->number:Ljava/lang/String;
 
@@ -1796,21 +1844,18 @@
 
     if-eq v1, v2, :cond_4
 
-    .line 242
     add-int/lit8 v9, v9, -0x1
 
-    .line 245
     :cond_4
     sget v1, Lcom/android/internal/telephony/AdnRecordCache;->MAX_PHB_NUMBER_LENGTH:I
 
     if-le v9, v1, :cond_5
 
-    .line 247
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v2, "the input length of phoneNumber is too long: "
+    const-string v2, "the input length of phoneNumber is too long: "
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -1834,7 +1879,6 @@
 
     goto/16 :goto_0
 
-    .line 255
     :cond_5
     iget-object v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->userWriteResponse:Landroid/util/SparseArray;
 
@@ -1844,11 +1888,9 @@
 
     check-cast v10, Landroid/os/Message;
 
-    .line 256
     .local v10, pendingResponse:Landroid/os/Message;
     if-eqz v10, :cond_6
 
-    .line 257
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1873,15 +1915,19 @@
 
     goto/16 :goto_0
 
-    .line 261
     :cond_6
+    iget-object v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->mAdnCacheManager:Lcom/android/internal/telephony/AdnCacheManager;
+
+    move-object/from16 v0, p3
+
+    invoke-virtual {v1, p1, p2, v0}, Lcom/android/internal/telephony/AdnCacheManager;->handleUpdateAdnRecord(ILcom/android/internal/telephony/AdnRecord;Lcom/android/internal/telephony/AdnRecord;)V
+
     iget-object v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->userWriteResponse:Landroid/util/SparseArray;
 
     move-object/from16 v0, p5
 
     invoke-virtual {v1, p1, v0}, Landroid/util/SparseArray;->put(ILjava/lang/Object;)V
 
-    .line 262
     const/16 v1, 0x6f3a
 
     if-eq p1, v1, :cond_7
@@ -1890,7 +1936,6 @@
 
     if-ne p1, v1, :cond_8
 
-    .line 263
     :cond_7
     iget-object v1, p2, Lcom/android/internal/telephony/AdnRecord;->alphaTag:Ljava/lang/String;
 
@@ -1908,14 +1953,12 @@
 
     if-nez v1, :cond_8
 
-    .line 265
     iget-object v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->mUsimPhoneBookManager:Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;
 
     move/from16 v0, p3
 
     invoke-virtual {v1, v0}, Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;->removeContactGroup(I)Z
 
-    .line 268
     :cond_8
     iget-object v12, p0, Lcom/android/internal/telephony/AdnRecordCache;->mLock:Ljava/lang/Object;
 
@@ -1923,7 +1966,6 @@
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 269
     :try_start_3
     new-instance v1, Lcom/android/internal/telephony/AdnRecordLoader;
 
@@ -1949,14 +1991,12 @@
 
     invoke-virtual/range {v1 .. v7}, Lcom/android/internal/telephony/AdnRecordLoader;->updateEF(Lcom/android/internal/telephony/AdnRecord;IIILjava/lang/String;Landroid/os/Message;)V
 
-    .line 273
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->mLocked:Z
     :try_end_3
     .catchall {:try_start_3 .. :try_end_3} :catchall_1
 
-    .line 275
     :try_start_4
     iget-object v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->mLock:Ljava/lang/Object;
 
@@ -1965,13 +2005,11 @@
     .catchall {:try_start_4 .. :try_end_4} :catchall_1
     .catch Ljava/lang/InterruptedException; {:try_start_4 .. :try_end_4} :catch_1
 
-    .line 279
     :try_start_5
     monitor-exit v12
     :try_end_5
     .catchall {:try_start_5 .. :try_end_5} :catchall_1
 
-    .line 280
     :try_start_6
     iget-boolean v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->mSuccess:Z
     :try_end_6
@@ -1979,7 +2017,6 @@
 
     if-eqz v1, :cond_0
 
-    .line 284
     const/16 v1, 0x6f3a
 
     if-eq p1, v1, :cond_9
@@ -1988,7 +2025,6 @@
 
     if-ne p1, v1, :cond_d
 
-    .line 286
     :cond_9
     :try_start_7
     iget-object v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->mUsimPhoneBookManager:Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;
@@ -1999,7 +2035,6 @@
 
     invoke-virtual {v1, v2, v0}, Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;->updateAnrByAdnIndex(Ljava/lang/String;I)V
 
-    .line 287
     iget-object v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->mUsimPhoneBookManager:Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;
 
     invoke-virtual {v1}, Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;->supportVodafone()Z
@@ -2008,7 +2043,6 @@
 
     if-eqz v1, :cond_a
 
-    .line 288
     iget-object v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->mUsimPhoneBookManager:Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;
 
     iget-object v2, p2, Lcom/android/internal/telephony/AdnRecord;->sne:Ljava/lang/String;
@@ -2017,7 +2051,6 @@
 
     invoke-virtual {v1, v2, v0}, Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;->updateSneByAdnIndex(Ljava/lang/String;I)V
 
-    .line 290
     :cond_a
     iget-object v1, p0, Lcom/android/internal/telephony/AdnRecordCache;->mUsimPhoneBookManager:Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;
 
@@ -2029,13 +2062,11 @@
 
     move-result v11
 
-    .line 291
     .local v11, success:I
     const/4 v1, -0x1
 
     if-ne v1, v11, :cond_b
 
-    .line 292
     const-string v1, "drop the email for the limitation of the SIM card"
 
     const/16 v2, 0x3ed
@@ -2049,12 +2080,10 @@
 
     goto/16 :goto_0
 
-    .line 306
     .end local v11           #success:I
     :catch_0
     move-exception v8
 
-    .line 307
     .local v8, e:Ljava/lang/Exception;
     :try_start_8
     invoke-virtual {v8}, Ljava/lang/Exception;->printStackTrace()V
@@ -2063,19 +2092,16 @@
 
     goto/16 :goto_0
 
-    .line 276
     .end local v8           #e:Ljava/lang/Exception;
     :catch_1
     move-exception v8
 
-    .line 277
     .local v8, e:Ljava/lang/InterruptedException;
     :try_start_9
     monitor-exit v12
 
     goto/16 :goto_0
 
-    .line 279
     .end local v8           #e:Ljava/lang/InterruptedException;
     :catchall_1
     move-exception v1
@@ -2089,16 +2115,14 @@
     :try_end_a
     .catchall {:try_start_a .. :try_end_a} :catchall_0
 
-    .line 296
     .restart local v11       #success:I
     :cond_b
     const/4 v1, -0x2
 
     if-ne v1, v11, :cond_c
 
-    .line 297
     :try_start_b
-    const-string/jumbo v1, "the email string is too long"
+    const-string v1, "the email string is too long"
 
     const/16 v2, 0x3ee
 
@@ -2106,7 +2130,6 @@
 
     invoke-direct {p0, v0, v1, v2}, Lcom/android/internal/telephony/AdnRecordCache;->sendErrorResponse(Landroid/os/Message;Ljava/lang/String;I)V
 
-    .line 301
     const-string v1, "GSM"
 
     const-string v2, "haman, by index email too long"
@@ -2115,7 +2138,6 @@
 
     goto/16 :goto_0
 
-    .line 303
     :cond_c
     const/4 v1, 0x0
 
@@ -2125,7 +2147,6 @@
 
     invoke-static {v0, v1, v2}, Landroid/os/AsyncResult;->forMessage(Landroid/os/Message;Ljava/lang/Object;Ljava/lang/Throwable;)Landroid/os/AsyncResult;
 
-    .line 304
     invoke-virtual/range {p5 .. p5}, Landroid/os/Message;->sendToTarget()V
     :try_end_b
     .catchall {:try_start_b .. :try_end_b} :catchall_0
@@ -2133,14 +2154,12 @@
 
     goto/16 :goto_0
 
-    .line 312
     .end local v11           #success:I
     :cond_d
     const/16 v1, 0x6f3b
 
     if-ne p1, v1, :cond_0
 
-    .line 313
     const/4 v1, 0x0
 
     const/4 v2, 0x0
@@ -2150,7 +2169,6 @@
 
     invoke-static {v0, v1, v2}, Landroid/os/AsyncResult;->forMessage(Landroid/os/Message;Ljava/lang/Object;Ljava/lang/Throwable;)Landroid/os/AsyncResult;
 
-    .line 314
     invoke-virtual/range {p5 .. p5}, Landroid/os/Message;->sendToTarget()V
     :try_end_c
     .catchall {:try_start_c .. :try_end_c} :catchall_0
@@ -2167,7 +2185,7 @@
     .parameter "response"
 
     .prologue
-    .line 334
+    .line 215
     monitor-enter p0
 
     :try_start_0
@@ -2175,7 +2193,7 @@
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v4, "updateAdnBySearch efid:"
+    const-string v4, "updateAdnBySearch efid:"
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -2187,7 +2205,7 @@
 
     move-result-object v3
 
-    const-string/jumbo v4, "pin2:"
+    const-string v4, "pin2:"
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -2237,20 +2255,16 @@
 
     invoke-virtual {v0, v3}, Lcom/android/internal/telephony/AdnRecordCache;->logd(Ljava/lang/String;)V
 
-    .line 336
     const/4 v7, -0x1
 
-    .line 338
     .local v7, index:I
     invoke-virtual/range {p0 .. p1}, Lcom/android/internal/telephony/AdnRecordCache;->extensionEfForEf(I)I
 
     move-result v6
 
-    .line 340
     .local v6, extensionEF:I
     if-gez v6, :cond_0
 
-    .line 341
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -2281,7 +2295,6 @@
 
     move v13, v7
 
-    .line 506
     .end local v7           #index:I
     .local v13, index:I
     :goto_0
@@ -2289,7 +2302,6 @@
 
     return v13
 
-    .line 345
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_0
@@ -2306,12 +2318,11 @@
 
     if-le v3, v4, :cond_1
 
-    .line 347
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v4, "the input length of alphaTag is too long: "
+    const-string v4, "the input length of alphaTag is too long: "
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -2339,12 +2350,10 @@
 
     move v13, v7
 
-    .line 351
     .end local v7           #index:I
     .restart local v13       #index:I
     goto :goto_0
 
-    .line 354
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_1
@@ -2356,7 +2365,6 @@
 
     move-result v15
 
-    .line 355
     .local v15, num_length:I
     move-object/from16 v0, p3
 
@@ -2372,21 +2380,18 @@
 
     if-eq v3, v4, :cond_2
 
-    .line 356
     add-int/lit8 v15, v15, -0x1
 
-    .line 359
     :cond_2
     sget v3, Lcom/android/internal/telephony/AdnRecordCache;->MAX_PHB_NUMBER_LENGTH:I
 
     if-le v15, v3, :cond_3
 
-    .line 361
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v4, "the input length of phoneNumber is too long: "
+    const-string v4, "the input length of phoneNumber is too long: "
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -2414,12 +2419,10 @@
 
     move v13, v7
 
-    .line 366
     .end local v7           #index:I
     .restart local v13       #index:I
     goto :goto_0
 
-    .line 369
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_3
@@ -2429,7 +2432,6 @@
 
     if-eqz v3, :cond_5
 
-    .line 370
     move-object/from16 v0, p3
 
     iget-object v3, v0, Lcom/android/internal/telephony/AdnRecord;->additionalNumber:Ljava/lang/String;
@@ -2438,7 +2440,6 @@
 
     move-result v15
 
-    .line 371
     move-object/from16 v0, p3
 
     iget-object v3, v0, Lcom/android/internal/telephony/AdnRecord;->additionalNumber:Ljava/lang/String;
@@ -2453,21 +2454,18 @@
 
     if-eq v3, v4, :cond_4
 
-    .line 372
     add-int/lit8 v15, v15, -0x1
 
-    .line 375
     :cond_4
     sget v3, Lcom/android/internal/telephony/AdnRecordCache;->MAX_PHB_NUMBER_ANR_LENGTH:I
 
     if-le v15, v3, :cond_5
 
-    .line 376
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v4, "the input length of additional number is too long: "
+    const-string v4, "the input length of additional number is too long: "
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -2495,12 +2493,10 @@
 
     move v13, v7
 
-    .line 381
     .end local v7           #index:I
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 385
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_5
@@ -2518,8 +2514,7 @@
 
     if-nez v3, :cond_6
 
-    .line 386
-    const-string/jumbo v3, "the email string is too long"
+    const-string v3, "the email string is too long"
 
     const/16 v4, 0x3ee
 
@@ -2531,12 +2526,10 @@
 
     move v13, v7
 
-    .line 390
     .end local v7           #index:I
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 395
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_6
@@ -2546,7 +2539,6 @@
 
     if-ne v0, v3, :cond_7
 
-    .line 396
     move-object/from16 v0, p0
 
     iget-object v3, v0, Lcom/android/internal/telephony/AdnRecordCache;->mUsimPhoneBookManager:Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;
@@ -2555,12 +2547,10 @@
 
     move-result-object v16
 
-    .line 401
     .local v16, oldAdnList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/internal/telephony/AdnRecord;>;"
     :goto_1
     if-nez v16, :cond_8
 
-    .line 402
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -2591,12 +2581,10 @@
 
     move v13, v7
 
-    .line 406
     .end local v7           #index:I
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 398
     .end local v13           #index:I
     .end local v16           #oldAdnList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/internal/telephony/AdnRecord;>;"
     .restart local v7       #index:I
@@ -2608,11 +2596,9 @@
     .restart local v16       #oldAdnList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/internal/telephony/AdnRecord;>;"
     goto :goto_1
 
-    .line 409
     :cond_8
     const/4 v10, 0x1
 
-    .line 410
     .local v10, count:I
     invoke-virtual/range {v16 .. v16}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
 
@@ -2626,7 +2612,6 @@
 
     if-eqz v3, :cond_9
 
-    .line 411
     invoke-interface {v14}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
@@ -2641,16 +2626,14 @@
 
     if-eqz v3, :cond_a
 
-    .line 412
     move v7, v10
 
-    .line 417
     :cond_9
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v4, "updateAdnBySearch index "
+    const-string v4, "updateAdnBySearch index "
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -2668,12 +2651,10 @@
 
     invoke-virtual {v0, v3}, Lcom/android/internal/telephony/AdnRecordCache;->logd(Ljava/lang/String;)V
 
-    .line 418
     const/4 v3, -0x1
 
     if-ne v7, v3, :cond_c
 
-    .line 419
     move-object/from16 v0, p2
 
     iget-object v3, v0, Lcom/android/internal/telephony/AdnRecord;->alphaTag:Ljava/lang/String;
@@ -2694,7 +2675,6 @@
 
     if-nez v3, :cond_b
 
-    .line 420
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -2726,12 +2706,10 @@
     :goto_3
     move v13, v7
 
-    .line 427
     .end local v7           #index:I
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 415
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_a
@@ -2739,7 +2717,6 @@
 
     goto :goto_2
 
-    .line 425
     :cond_b
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -2771,7 +2748,6 @@
 
     goto :goto_3
 
-    .line 334
     .end local v6           #extensionEF:I
     .end local v7           #index:I
     .end local v10           #count:I
@@ -2785,7 +2761,6 @@
 
     throw v3
 
-    .line 430
     .restart local v6       #extensionEF:I
     .restart local v7       #index:I
     .restart local v10       #count:I
@@ -2799,7 +2774,6 @@
 
     if-ne v0, v3, :cond_d
 
-    .line 431
     add-int/lit8 v3, v7, -0x1
 
     :try_start_2
@@ -2811,36 +2785,29 @@
 
     check-cast v12, Lcom/android/internal/telephony/AdnRecord;
 
-    .line 432
     .local v12, foundAdn:Lcom/android/internal/telephony/AdnRecord;
     iget v0, v12, Lcom/android/internal/telephony/AdnRecord;->efid:I
 
     move/from16 p1, v0
 
-    .line 433
     iget v6, v12, Lcom/android/internal/telephony/AdnRecord;->extRecord:I
 
-    .line 434
     iget v7, v12, Lcom/android/internal/telephony/AdnRecord;->recordNumber:I
 
-    .line 436
     move/from16 v0, p1
 
     move-object/from16 v1, p3
 
     iput v0, v1, Lcom/android/internal/telephony/AdnRecord;->efid:I
 
-    .line 437
     move-object/from16 v0, p3
 
     iput v6, v0, Lcom/android/internal/telephony/AdnRecord;->extRecord:I
 
-    .line 438
     move-object/from16 v0, p3
 
     iput v7, v0, Lcom/android/internal/telephony/AdnRecord;->recordNumber:I
 
-    .line 441
     .end local v12           #foundAdn:Lcom/android/internal/telephony/AdnRecord;
     :cond_d
     move-object/from16 v0, p0
@@ -2855,11 +2822,9 @@
 
     check-cast v17, Landroid/os/Message;
 
-    .line 443
     .local v17, pendingResponse:Landroid/os/Message;
     if-eqz v17, :cond_e
 
-    .line 444
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -2888,18 +2853,15 @@
 
     move v13, v7
 
-    .line 445
     .end local v7           #index:I
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 447
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_e
     if-nez p1, :cond_f
 
-    .line 448
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -2928,12 +2890,10 @@
 
     move v13, v7
 
-    .line 449
     .end local v7           #index:I
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 451
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_f
@@ -2951,7 +2911,6 @@
 
     if-nez v3, :cond_10
 
-    .line 452
     const-string v3, "drop the email for the limitation of the SIM card"
 
     const/16 v4, 0x3ed
@@ -2964,12 +2923,10 @@
 
     move v13, v7
 
-    .line 456
     .end local v7           #index:I
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 458
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_10
@@ -2987,8 +2944,7 @@
 
     if-nez v3, :cond_11
 
-    .line 459
-    const-string/jumbo v3, "the email string is too long"
+    const-string v3, "the email string is too long"
 
     const/16 v4, 0x3ee
 
@@ -3000,12 +2956,10 @@
 
     move v13, v7
 
-    .line 463
     .end local v7           #index:I
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 466
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_11
@@ -3019,7 +2973,6 @@
 
     invoke-virtual {v3, v0, v1}, Landroid/util/SparseArray;->put(ILjava/lang/Object;)V
 
-    .line 468
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lcom/android/internal/telephony/AdnRecordCache;->mLock:Ljava/lang/Object;
@@ -3030,7 +2983,7 @@
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 469
+    .line 269
     :try_start_3
     new-instance v3, Lcom/android/internal/telephony/AdnRecordLoader;
 
@@ -3060,7 +3013,6 @@
 
     invoke-virtual/range {v3 .. v9}, Lcom/android/internal/telephony/AdnRecordLoader;->updateEF(Lcom/android/internal/telephony/AdnRecord;IIILjava/lang/String;Landroid/os/Message;)V
 
-    .line 473
     const/4 v3, 0x1
 
     move-object/from16 v0, p0
@@ -3069,7 +3021,6 @@
     :try_end_3
     .catchall {:try_start_3 .. :try_end_3} :catchall_1
 
-    .line 475
     :try_start_4
     move-object/from16 v0, p0
 
@@ -3080,13 +3031,11 @@
     .catchall {:try_start_4 .. :try_end_4} :catchall_1
     .catch Ljava/lang/InterruptedException; {:try_start_4 .. :try_end_4} :catch_0
 
-    .line 479
     :try_start_5
     monitor-exit v19
     :try_end_5
     .catchall {:try_start_5 .. :try_end_5} :catchall_1
 
-    .line 480
     :try_start_6
     move-object/from16 v0, p0
 
@@ -3098,18 +3047,15 @@
 
     move v13, v7
 
-    .line 481
     .end local v7           #index:I
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 476
     .end local v13           #index:I
     .restart local v7       #index:I
     :catch_0
     move-exception v11
 
-    .line 477
     .local v11, e:Ljava/lang/InterruptedException;
     :try_start_7
     monitor-exit v19
@@ -3120,7 +3066,6 @@
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 479
     .end local v11           #e:Ljava/lang/InterruptedException;
     .end local v13           #index:I
     .restart local v7       #index:I
@@ -3134,11 +3079,9 @@
     :try_start_8
     throw v3
 
-    .line 483
     :cond_12
     const/16 v18, 0x0
 
-    .line 484
     .local v18, success:I
     const/16 v3, 0x6f3a
 
@@ -3152,7 +3095,6 @@
 
     if-ne v0, v3, :cond_15
 
-    .line 485
     :cond_13
     move-object/from16 v0, p0
 
@@ -3164,7 +3106,6 @@
 
     if-eqz v3, :cond_14
 
-    .line 486
     move-object/from16 v0, p0
 
     iget-object v3, v0, Lcom/android/internal/telephony/AdnRecordCache;->mUsimPhoneBookManager:Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;
@@ -3175,7 +3116,6 @@
 
     invoke-virtual {v3, v4, v7}, Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;->updateSneByAdnIndex(Ljava/lang/String;I)V
 
-    .line 488
     :cond_14
     move-object/from16 v0, p0
 
@@ -3187,7 +3127,6 @@
 
     invoke-virtual {v3, v4, v7}, Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;->updateAnrByAdnIndex(Ljava/lang/String;I)V
 
-    .line 489
     move-object/from16 v0, p0
 
     iget-object v3, v0, Lcom/android/internal/telephony/AdnRecordCache;->mUsimPhoneBookManager:Lcom/android/internal/telephony/gsm/UsimPhoneBookManager;
@@ -3200,7 +3139,6 @@
 
     move-result v18
 
-    .line 492
     :cond_15
     const/4 v3, -0x1
 
@@ -3208,7 +3146,6 @@
 
     if-ne v3, v0, :cond_16
 
-    .line 493
     const-string v3, "drop the email for the limitation of the SIM card"
 
     const/16 v4, 0x3ed
@@ -3222,12 +3159,10 @@
     :goto_4
     move v13, v7
 
-    .line 506
     .end local v7           #index:I
     .restart local v13       #index:I
     goto/16 :goto_0
 
-    .line 496
     .end local v13           #index:I
     .restart local v7       #index:I
     :cond_16
@@ -3237,8 +3172,7 @@
 
     if-ne v3, v0, :cond_17
 
-    .line 497
-    const-string/jumbo v3, "the email string is too long"
+    const-string v3, "the email string is too long"
 
     const/16 v4, 0x3ee
 
@@ -3248,7 +3182,6 @@
 
     invoke-direct {v0, v1, v3, v4}, Lcom/android/internal/telephony/AdnRecordCache;->sendErrorResponse(Landroid/os/Message;Ljava/lang/String;I)V
 
-    .line 501
     const-string v3, "GSM"
 
     const-string v4, "haman, by search email too long"
@@ -3257,7 +3190,6 @@
 
     goto :goto_4
 
-    .line 503
     :cond_17
     const/4 v3, 0x0
 
@@ -3267,6 +3199,7 @@
 
     invoke-static {v0, v3, v4}, Landroid/os/AsyncResult;->forMessage(Landroid/os/Message;Ljava/lang/Object;Ljava/lang/Throwable;)Landroid/os/AsyncResult;
 
+    .line 304
     .line 504
     invoke-virtual/range {p5 .. p5}, Landroid/os/Message;->sendToTarget()V
     :try_end_8

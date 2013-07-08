@@ -6,7 +6,8 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Landroid/telephony/PhoneNumberUtils$CountryCallingCodeAndNewIndex;
+        Landroid/telephony/PhoneNumberUtils$CountryCallingCodeAndNewIndex;,
+        Landroid/telephony/PhoneNumberUtils$Injector;
     }
 .end annotation
 
@@ -926,6 +927,21 @@
         :pswitch_3
         :pswitch_4
     .end packed-switch
+.end method
+
+.method static callIndexOfLastNetworkChar(Ljava/lang/String;)I
+    .locals 1
+    .parameter "a"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
+    .prologue
+    invoke-static {p0}, Landroid/telephony/PhoneNumberUtils;->indexOfLastNetworkChar(Ljava/lang/String;)I
+
+    move-result v0
+
+    return v0
 .end method
 
 .method public static calledPartyBCDFragmentToString([BII)Ljava/lang/String;
@@ -1858,6 +1874,9 @@
     .locals 1
     .parameter "a"
     .parameter "b"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 610
@@ -2236,7 +2255,7 @@
     :cond_14
     move-object/from16 v0, p1
 
-    invoke-static {v0, v10, v4}, Landroid/telephony/PhoneNumberUtils;->checkPrefixIsIgnorable(Ljava/lang/String;II)Z
+    invoke-static {v0, v11, v4}, Landroid/telephony/PhoneNumberUtils;->checkPrefixIsIgnorable(Ljava/lang/String;II)Z
 
     move-result v18
 
@@ -3829,14 +3848,19 @@
     .parameter "phoneNumber"
     .parameter "phoneNumberE164"
     .parameter "defaultCountryIso"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
-    .line 1462
+    invoke-static {p0}, Lmiui/telephony/PhoneNumberUtils;->removeDashesAndBlanks(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p0
+
     invoke-virtual {p0}, Ljava/lang/String;->length()I
 
     move-result v1
 
-    .line 1463
     .local v1, len:I
     const/4 v0, 0x0
 
@@ -5746,9 +5770,11 @@
     .parameter "number"
     .parameter "defaultCountryIso"
     .parameter "useExactMatch"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
-    .line 1810
     invoke-static {p0}, Landroid/telephony/PhoneNumberUtils;->isEmergencyNumber(Ljava/lang/String;)Z
 
     move-result v0
@@ -5762,6 +5788,7 @@
     .parameter "useExactMatch"
 
     .prologue
+    .line 1810
     .line 1744
     invoke-static {p0}, Landroid/telephony/PhoneNumberUtils;->isEmergencyNumber(Ljava/lang/String;)Z
 
@@ -10397,6 +10424,9 @@
 .method public static normalizeNumber(Ljava/lang/String;)Ljava/lang/String;
     .locals 6
     .parameter "phoneNumber"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 1501
@@ -10425,6 +10455,8 @@
 
     .line 1506
     .local v0, c:C
+    invoke-static {v4, v0, v2}, Landroid/telephony/PhoneNumberUtils$Injector;->appendNonSeparator(Ljava/lang/StringBuilder;CI)V
+
     const/16 v5, 0xa
 
     invoke-static {v0, v5}, Ljava/lang/Character;->digit(CI)I

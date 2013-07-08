@@ -29248,6 +29248,10 @@
     :cond_2
     iput-boolean v5, p0, Lcom/android/server/wm/WindowManagerService;->mSafeMode:Z
 
+    const/4 v6, 0x0
+
+    iput-boolean v6, p0, Lcom/android/server/wm/WindowManagerService;->mSafeMode:Z
+
     .line 7568
     :try_start_0
     const-string v5, "persist.sys.safemode"
@@ -37270,6 +37274,8 @@
     iget-boolean v2, v3, Lcom/android/server/wm/AppWindowToken;->startingMoved:Z
 
     if-nez v2, :cond_2
+
+    invoke-static/range {v27 .. v27}, Lcom/android/server/wm/WindowManagerService$Injector;->saveFloatingWindowState(Lcom/android/server/wm/WindowState;)V
 
     .line 8956
     const/16 v29, 0x0

@@ -1891,25 +1891,10 @@
 
     check-cast v19, Landroid/content/pm/PackageInfo;
 
-    .line 2449
     .restart local v19       #pkg:Landroid/content/pm/PackageInfo;
-    move-object/from16 v0, v19
+    sget-boolean v21, Lcom/android/server/BackupManagerService$Injector;->FALSE:Z
 
-    iget-object v0, v0, Landroid/content/pm/PackageInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
-
-    move-object/from16 v21, v0
-
-    move-object/from16 v0, v21
-
-    iget v0, v0, Landroid/content/pm/ApplicationInfo;->flags:I
-
-    move/from16 v21, v0
-
-    const v22, 0x8000
-
-    and-int v21, v21, v22
-
-    if-eqz v21, :cond_3
+    if-nez v21, :cond_3
 
     move-object/from16 v0, v19
 
@@ -1925,7 +1910,6 @@
 
     if-eqz v21, :cond_4
 
-    .line 2451
     :cond_3
     move-object/from16 v0, v18
 
@@ -1933,13 +1917,11 @@
 
     goto :goto_3
 
-    .line 2453
     :cond_4
     add-int/lit8 v13, v13, 0x1
 
     goto :goto_3
 
-    .line 2459
     .end local v19           #pkg:Landroid/content/pm/PackageInfo;
     :cond_5
     const/4 v13, 0x0
@@ -1953,7 +1935,6 @@
 
     if-ge v13, v0, :cond_7
 
-    .line 2460
     move-object/from16 v0, v18
 
     invoke-interface {v0, v13}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -1962,7 +1943,7 @@
 
     check-cast v19, Landroid/content/pm/PackageInfo;
 
-    .line 2461
+    .line 2449
     .restart local v19       #pkg:Landroid/content/pm/PackageInfo;
     move-object/from16 v0, v19
 
@@ -1998,20 +1979,18 @@
 
     if-nez v21, :cond_6
 
-    .line 2466
+    .line 2460
     move-object/from16 v0, v18
 
     invoke-interface {v0, v13}, Ljava/util/List;->remove(I)Ljava/lang/Object;
 
     goto :goto_4
 
-    .line 2468
     :cond_6
     add-int/lit8 v13, v13, 0x1
 
     goto :goto_4
 
-    .line 2472
     .end local v19           #pkg:Landroid/content/pm/PackageInfo;
     :cond_7
     new-instance v16, Ljava/io/FileOutputStream;
@@ -2032,15 +2011,13 @@
 
     invoke-direct {v0, v1}, Ljava/io/FileOutputStream;-><init>(Ljava/io/FileDescriptor;)V
 
-    .line 2473
     .local v16, ofstream:Ljava/io/FileOutputStream;
     const/16 v17, 0x0
 
-    .line 2475
     .local v17, out:Ljava/io/OutputStream;
     const/16 v19, 0x0
 
-    .line 2477
+    .line 2461
     .restart local v19       #pkg:Landroid/content/pm/PackageInfo;
     :try_start_1
     move-object/from16 v0, p0

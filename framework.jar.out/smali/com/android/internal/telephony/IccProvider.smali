@@ -1987,6 +1987,13 @@
 
     .line 327
     .local v1, retVal:Ljava/lang/String;
+	const/4 v2, 0x1
+
+	if-gt v0, v2, :cond_ff
+
+	return-object v1
+
+	:cond_ff
     const/4 v2, 0x0
 
     invoke-virtual {p1, v2}, Ljava/lang/String;->charAt(I)C

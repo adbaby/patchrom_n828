@@ -3,6 +3,14 @@
 .source "ActionBarContainer.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/android/internal/widget/ActionBarContainer$Injector;
+    }
+.end annotation
+
+
 # instance fields
 .field private mActionBarView:Lcom/android/internal/widget/ActionBarView;
 
@@ -278,6 +286,18 @@
     return-void
 .end method
 
+.method protected isSplit()Z
+    .locals 1
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
+
+    .prologue
+    iget-boolean v0, p0, Lcom/android/internal/widget/ActionBarContainer;->mIsSplit:Z
+
+    return v0
+.end method
+
 .method public onDraw(Landroid/graphics/Canvas;)V
     .locals 1
     .parameter "canvas"
@@ -418,6 +438,9 @@
     .parameter "t"
     .parameter "r"
     .parameter "b"
+    .annotation build Landroid/annotation/MiuiHook;
+        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
+    .end annotation
 
     .prologue
     .line 281
@@ -472,15 +495,11 @@
 
     .line 289
     .local v7, tabHeight:I
-    iget-object v8, p0, Lcom/android/internal/widget/ActionBarContainer;->mActionBarView:Lcom/android/internal/widget/ActionBarView;
-
-    invoke-virtual {v8}, Lcom/android/internal/widget/ActionBarView;->getDisplayOptions()I
+    invoke-direct {p0}, Lcom/android/internal/widget/ActionBarContainer;->shouldPutTabsOnTop()Z
 
     move-result v8
 
-    and-int/lit8 v8, v8, 0x2
-
-    if-nez v8, :cond_7
+    if-eqz v8, :cond_7
 
     .line 291
     invoke-virtual {p0}, Lcom/android/internal/widget/ActionBarContainer;->getChildCount()I
