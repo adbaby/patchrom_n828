@@ -1,0 +1,33 @@
+*** Resources.smali	2013-07-08 16:51:55.378630493 +0800
+--- Resources.smali	2013-07-08 16:53:39.146631376 +0800
+***************
+*** 3530,3544 ****
+      .end local v4           #dr:Landroid/graphics/drawable/Drawable;
+      .restart local v3       #dr:Landroid/graphics/drawable/Drawable;
+      :cond_5
+!     sget-object v13, Landroid/content/res/Resources;->sPreloadedDrawables:Landroid/util/LongSparseArray;
+! 
+!     invoke-virtual {v13, v9, v10}, Landroid/util/LongSparseArray;->get(J)Ljava/lang/Object;
+  
+!     move-result-object v13
+  
+!     check-cast v13, Landroid/graphics/drawable/Drawable$ConstantState;
+  
+!     move-object v2, v13
+  
+      goto :goto_2
+  
+--- 3614,3626 ----
+      .end local v4           #dr:Landroid/graphics/drawable/Drawable;
+      .restart local v3       #dr:Landroid/graphics/drawable/Drawable;
+      :cond_5
+!     move-object/from16 v0, p0
+  
+!     move/from16 v1, p2
+  
+!     invoke-virtual {v0, v9, v10, v1}, Landroid/content/res/Resources;->getPreloadedDrawable(JI)Landroid/graphics/drawable/Drawable$ConstantState;
+  
+!     move-result-object v2
+  
+      goto :goto_2
+  

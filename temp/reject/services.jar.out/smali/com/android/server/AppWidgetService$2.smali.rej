@@ -1,0 +1,28 @@
+*** AppWidgetService$2.smali	2013-07-08 16:53:00.358631045 +0800
+--- AppWidgetService$2.smali	2013-07-08 16:54:49.014631970 +0800
+***************
+*** 47,52 ****
+      move-result-object v0
+  
+      .local v0, action:Ljava/lang/String;
+      const-string v3, "android.intent.action.BOOT_COMPLETED"
+  
+      invoke-virtual {v3, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+--- 50,66 ----
+      move-result-object v0
+  
+      .local v0, action:Ljava/lang/String;
++     iget-object v3, p0, Lcom/android/server/AppWidgetService$2;->this$0:Lcom/android/server/AppWidgetService;
++ 
++     invoke-static {v3, v0}, Lcom/android/server/AppWidgetService$Injector;->handleAction(Lcom/android/server/AppWidgetService;Ljava/lang/String;)Z
++ 
++     move-result v3
++ 
++     if-eqz v3, :cond_3
++ 
++     return-void
++ 
++     :cond_3
+      const-string v3, "android.intent.action.BOOT_COMPLETED"
+  
+      invoke-virtual {v3, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z

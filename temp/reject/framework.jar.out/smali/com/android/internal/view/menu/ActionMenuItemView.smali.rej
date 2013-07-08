@@ -1,0 +1,37 @@
+*** ActionMenuItemView.smali	2013-07-08 16:52:38.478630859 +0800
+--- ActionMenuItemView.smali	2013-07-08 16:54:25.834631773 +0800
+***************
+*** 601,610 ****
+      .locals 12
+      .parameter "widthMeasureSpec"
+      .parameter "heightMeasureSpec"
+  
+      .prologue
+      const/high16 v11, 0x4000
+  
+      invoke-virtual {p0}, Lcom/android/internal/view/menu/ActionMenuItemView;->hasText()Z
+  
+      move-result v3
+--- 743,764 ----
+      .locals 12
+      .parameter "widthMeasureSpec"
+      .parameter "heightMeasureSpec"
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
+  
+      .prologue
+      const/high16 v11, 0x4000
+  
++     invoke-virtual {p0, p1, p2}, Lcom/android/internal/view/menu/ActionMenuItemView;->miuiOnMeasure(II)Z
++ 
++     move-result v7
++ 
++     if-eqz v7, :cond_ff
++ 
++     return-void
++ 
++     :cond_ff
+      invoke-virtual {p0}, Lcom/android/internal/view/menu/ActionMenuItemView;->hasText()Z
+  
+      move-result v3

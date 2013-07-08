@@ -1,0 +1,35 @@
+*** IStatusBarService$Stub.smali	2013-07-08 16:52:39.554630868 +0800
+--- IStatusBarService$Stub.smali	2013-07-08 16:54:27.126631784 +0800
+***************
+*** 58,63 ****
+  
+  .field static final TRANSACTION_setImeWindowStatus:I = 0x8
+  
+  .field static final TRANSACTION_setSystemUiVisibility:I = 0xf
+  
+  .field static final TRANSACTION_toggleRecentApps:I = 0x11
+--- 58,65 ----
+  
+  .field static final TRANSACTION_setImeWindowStatus:I = 0x8
+  
++ .field static final TRANSACTION_setStatus:I = 0x14
++ 
+  .field static final TRANSACTION_setSystemUiVisibility:I = 0xf
+  
+  .field static final TRANSACTION_toggleRecentApps:I = 0x11
+***************
+*** 839,844 ****
+          0x11 -> :sswitch_11
+          0x12 -> :sswitch_12
+          0x13 -> :sswitch_13
+          0x5f4e5446 -> :sswitch_0
+      .end sparse-switch
+  .end method
+--- 896,902 ----
+          0x11 -> :sswitch_11
+          0x12 -> :sswitch_12
+          0x13 -> :sswitch_13
++         0x14 -> :sswitch_14
+          0x5f4e5446 -> :sswitch_0
+      .end sparse-switch
+  .end method

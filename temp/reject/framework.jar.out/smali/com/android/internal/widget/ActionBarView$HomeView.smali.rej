@@ -1,0 +1,46 @@
+*** ActionBarView$HomeView.smali	2013-07-08 16:52:34.746630828 +0800
+--- ActionBarView$HomeView.smali	2013-07-08 16:54:21.210631733 +0800
+***************
+*** 84,96 ****
+      return v0
+  .end method
+  
+  .method public getLeftOffset()I
+      .locals 2
+  
+      .prologue
+      iget-object v0, p0, Lcom/android/internal/widget/ActionBarView$HomeView;->mUpView:Landroid/view/View;
+  
+!     invoke-virtual {v0}, Landroid/view/View;->getVisibility()I
+  
+      move-result v0
+  
+--- 96,123 ----
+      return v0
+  .end method
+  
++ .method getIconView()Landroid/widget/ImageView;
++     .locals 1
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
++ 
++     .prologue
++     iget-object v0, p0, Lcom/android/internal/widget/ActionBarView$HomeView;->mIconView:Landroid/widget/ImageView;
++ 
++     return-object v0
++ .end method
++ 
+  .method public getLeftOffset()I
+      .locals 2
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
+  
+      .prologue
+      iget-object v0, p0, Lcom/android/internal/widget/ActionBarView$HomeView;->mUpView:Landroid/view/View;
+  
+!     invoke-static {p0, v0}, Lcom/android/internal/widget/ActionBarView$Injector;->getUpViewVisibility(Lcom/android/internal/widget/ActionBarView$HomeView;Landroid/view/View;)I
+  
+      move-result v0
+  

@@ -1,0 +1,48 @@
+*** AudioService.smali	2013-07-08 16:52:28.642630775 +0800
+--- AudioService.smali	2013-07-08 16:54:15.042631681 +0800
+***************
+*** 801,811 ****
+  
+      sput v0, Landroid/media/AudioService;->SOUND_EFFECT_VOLUME_DB:I
+  
+!     new-instance v0, Landroid/view/VolumePanel;
+  
+!     invoke-direct {v0, p1, p0}, Landroid/view/VolumePanel;-><init>(Landroid/content/Context;Landroid/media/AudioService;)V
+  
+!     iput-object v0, p0, Landroid/media/AudioService;->mVolumePanel:Landroid/view/VolumePanel;
+  
+      iput v11, p0, Landroid/media/AudioService;->mMode:I
+  
+--- 802,812 ----
+  
+      sput v0, Landroid/media/AudioService;->SOUND_EFFECT_VOLUME_DB:I
+  
+!     new-instance v0, Lmiui/view/VolumePanel;
+  
+!     invoke-direct {v0, p1, p0}, Lmiui/view/VolumePanel;-><init>(Landroid/content/Context;Landroid/media/AudioService;)V
+  
+!     iput-object v0, p0, Landroid/media/AudioService;->mVolumePanel:Lmiui/view/VolumePanel;
+  
+      iput v11, p0, Landroid/media/AudioService;->mMode:I
+  
+***************
+*** 9413,9418 ****
+      and-int/lit8 p3, p3, -0x5
+  
+      :cond_1
+      if-ne v0, v3, :cond_3
+  
+      and-int/lit8 p3, p3, -0x5
+--- 9417,9428 ----
+      and-int/lit8 p3, p3, -0x5
+  
+      :cond_1
++     iget-object v1, p0, Landroid/media/AudioService;->mVolumePanel:Lmiui/view/VolumePanel;
++ 
++     invoke-static {v1, p3, p1}, Landroid/media/AudioService$Injector;->adjustDirection(Lmiui/view/VolumePanel;II)I
++ 
++     move-result p1
++ 
+      if-ne v0, v3, :cond_3
+  
+      and-int/lit8 p3, p3, -0x5

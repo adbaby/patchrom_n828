@@ -1,0 +1,30 @@
+*** Installer.smali	2013-07-08 16:52:53.282630985 +0800
+--- Installer.smali	2013-07-08 16:54:42.134631911 +0800
+***************
+*** 1,4 ****
+! .class Lcom/android/server/pm/Installer;
+  .super Ljava/lang/Object;
+  .source "Installer.java"
+  
+--- 1,4 ----
+! .class public Lcom/android/server/pm/Installer;
+  .super Ljava/lang/Object;
+  .source "Installer.java"
+  
+***************
+*** 22,28 ****
+  
+  
+  # direct methods
+! .method constructor <init>()V
+      .locals 1
+  
+      .prologue
+--- 22,28 ----
+  
+  
+  # direct methods
+! .method public constructor <init>()V
+      .locals 1
+  
+      .prologue

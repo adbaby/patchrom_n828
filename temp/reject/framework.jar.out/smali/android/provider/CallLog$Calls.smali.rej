@@ -1,0 +1,48 @@
+*** CallLog$Calls.smali	2013-07-08 16:52:08.638630605 +0800
+--- CallLog$Calls.smali	2013-07-08 16:53:53.362631496 +0800
+***************
+*** 173,183 ****
+  
+      :cond_0
+      :goto_0
+!     new-instance v12, Landroid/content/ContentValues;
+  
+!     const/4 v2, 0x5
+  
+!     invoke-direct {v12, v2}, Landroid/content/ContentValues;-><init>(I)V
+  
+      .local v12, values:Landroid/content/ContentValues;
+      const-string v2, "number"
+--- 186,200 ----
+  
+      :cond_0
+      :goto_0
+!     new-instance v2, Landroid/content/ContentValues;
+  
+!     const/4 v3, 0x5
+  
+!     invoke-direct {v2, v3}, Landroid/content/ContentValues;-><init>(I)V
+! 
+!     invoke-static {v2}, Landroid/provider/CallLog$Injector;->getExtraCallLogValues(Landroid/content/ContentValues;)Landroid/content/ContentValues;
+! 
+!     move-result-object v12
+  
+      .local v12, values:Landroid/content/ContentValues;
+      const-string v2, "number"
+***************
+*** 393,399 ****
+      move-result-object v11
+  
+      .local v11, result:Landroid/net/Uri;
+!     invoke-static/range {p1 .. p1}, Landroid/provider/CallLog$Calls;->removeExpiredEntries(Landroid/content/Context;)V
+  
+      return-object v11
+  
+--- 410,416 ----
+      move-result-object v11
+  
+      .local v11, result:Landroid/net/Uri;
+!     invoke-static/range {p1 .. p1}, Landroid/provider/CallLog$Injector;->removeExpiredEntries(Landroid/content/Context;)V
+  
+      return-object v11
+  

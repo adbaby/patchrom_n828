@@ -1,0 +1,76 @@
+*** CallerInfo.smali	2013-07-08 16:52:44.610630911 +0800
+--- CallerInfo.smali	2013-07-08 16:54:32.566631830 +0800
+***************
+*** 303,311 ****
+      iput-object v3, v1, Lcom/android/internal/telephony/CallerInfo;->name:Ljava/lang/String;
+  
+      :cond_1
+      const-string v3, "number"
+  
+!     invoke-interface {p2, v3}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+  
+      move-result v0
+  
+--- 326,336 ----
+      iput-object v3, v1, Lcom/android/internal/telephony/CallerInfo;->name:Ljava/lang/String;
+  
+      :cond_1
++     invoke-static {p1}, Lcom/android/internal/telephony/CallerInfo$Injector;->setContactRef(Landroid/net/Uri;)V
++ 
+      const-string v3, "number"
+  
+!     invoke-static {p2, v3}, Lcom/android/internal/telephony/CallerInfo$Injector;->getColumnIndex(Landroid/database/Cursor;Ljava/lang/String;)I
+  
+      move-result v0
+  
+***************
+*** 320,326 ****
+      :cond_2
+      const-string v3, "normalized_number"
+  
+!     invoke-interface {p2, v3}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+  
+      move-result v0
+  
+--- 345,351 ----
+      :cond_2
+      const-string v3, "normalized_number"
+  
+!     invoke-static {p2, v3}, Lcom/android/internal/telephony/CallerInfo$Injector;->getColumnIndex(Landroid/database/Cursor;Ljava/lang/String;)I
+  
+      move-result v0
+  
+***************
+*** 335,341 ****
+      :cond_3
+      const-string v3, "label"
+  
+!     invoke-interface {p2, v3}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+  
+      move-result v0
+  
+--- 360,366 ----
+      :cond_3
+      const-string v3, "label"
+  
+!     invoke-static {p2, v3}, Lcom/android/internal/telephony/CallerInfo$Injector;->getColumnIndex(Landroid/database/Cursor;Ljava/lang/String;)I
+  
+      move-result v0
+  
+***************
+*** 343,349 ****
+  
+      const-string v3, "type"
+  
+!     invoke-interface {p2, v3}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+  
+      move-result v2
+  
+--- 368,374 ----
+  
+      const-string v3, "type"
+  
+!     invoke-static {p2, v3}, Lcom/android/internal/telephony/CallerInfo$Injector;->getColumnIndex(Landroid/database/Cursor;Ljava/lang/String;)I
+  
+      move-result v2
+  

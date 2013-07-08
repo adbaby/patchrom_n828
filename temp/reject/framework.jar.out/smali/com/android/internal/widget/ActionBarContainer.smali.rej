@@ -1,0 +1,69 @@
+*** ActionBarContainer.smali	2013-07-08 16:52:34.562630826 +0800
+--- ActionBarContainer.smali	2013-07-08 16:54:21.034631732 +0800
+***************
+*** 136,143 ****
+      goto :goto_0
+  .end method
+  
+  
+- # virtual methods
+  .method public getTabContainer()Landroid/view/View;
+      .locals 1
+  
+--- 144,199 ----
+      goto :goto_0
+  .end method
+  
++ .method private shouldPutTabsOnTop()Z
++     .locals 2
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
++ 
++     .prologue
++     const/4 v0, 0x0
++ 
++     iget-object v1, p0, Lcom/android/internal/widget/ActionBarContainer;->mContext:Landroid/content/Context;
++ 
++     invoke-static {v1}, Lmiui/util/UiUtils;->isV5Ui(Landroid/content/Context;)Z
++ 
++     move-result v1
++ 
++     if-eqz v1, :cond_1
++ 
++     :cond_0
++     :goto_0
++     return v0
++ 
++     :cond_1
++     iget-object v1, p0, Lcom/android/internal/widget/ActionBarContainer;->mActionBarView:Lcom/android/internal/widget/ActionBarView;
++ 
++     invoke-virtual {v1}, Lcom/android/internal/widget/ActionBarView;->getDisplayOptions()I
++ 
++     move-result v1
++ 
++     and-int/lit8 v1, v1, 0x2
++ 
++     if-nez v1, :cond_0
++ 
++     const/4 v0, 0x1
++ 
++     goto :goto_0
++ .end method
++ 
++ 
++ .method protected getActionBarView()Lcom/android/internal/widget/ActionBarView;
++     .locals 1
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
++ 
++     .prologue
++     iget-object v0, p0, Lcom/android/internal/widget/ActionBarContainer;->mActionBarView:Lcom/android/internal/widget/ActionBarView;
++ 
++     return-object v0
++ .end method
+  
+  .method public getTabContainer()Landroid/view/View;
+      .locals 1
+  

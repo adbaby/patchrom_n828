@@ -1,0 +1,32 @@
+*** AppErrorDialog$1.smali	2013-07-08 16:52:59.778631041 +0800
+--- AppErrorDialog$1.smali	2013-07-08 16:54:48.434631965 +0800
+***************
+*** 36,45 ****
+  .method public handleMessage(Landroid/os/Message;)V
+      .locals 3
+      .parameter "msg"
+  
+      .prologue
+      iget-object v0, p0, Lcom/android/server/am/AppErrorDialog$1;->this$0:Lcom/android/server/am/AppErrorDialog;
+  
+      #getter for: Lcom/android/server/am/AppErrorDialog;->mProc:Lcom/android/server/am/ProcessRecord;
+      invoke-static {v0}, Lcom/android/server/am/AppErrorDialog;->access$000(Lcom/android/server/am/AppErrorDialog;)Lcom/android/server/am/ProcessRecord;
+  
+--- 36,52 ----
+  .method public handleMessage(Landroid/os/Message;)V
+      .locals 3
+      .parameter "msg"
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
+  
+      .prologue
+      iget-object v0, p0, Lcom/android/server/am/AppErrorDialog$1;->this$0:Lcom/android/server/am/AppErrorDialog;
+  
++     invoke-static {v0, p1}, Lcom/android/server/am/AppErrorDialog$Injector;->sendFcReport(Lcom/android/server/am/AppErrorDialog;Landroid/os/Message;)V
++ 
++     iget-object v0, p0, Lcom/android/server/am/AppErrorDialog$1;->this$0:Lcom/android/server/am/AppErrorDialog;
++ 
+      #getter for: Lcom/android/server/am/AppErrorDialog;->mProc:Lcom/android/server/am/ProcessRecord;
+      invoke-static {v0}, Lcom/android/server/am/AppErrorDialog;->access$000(Lcom/android/server/am/AppErrorDialog;)Lcom/android/server/am/ProcessRecord;
+  

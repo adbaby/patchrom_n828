@@ -1,0 +1,53 @@
+*** MediaFile.smali	2013-07-08 16:52:26.078630754 +0800
+--- MediaFile.smali	2013-07-08 16:54:12.142631656 +0800
+***************
+*** 21,26 ****
+  
+  .field public static final FILE_TYPE_AMR:I = 0x4
+  
+  .field public static final FILE_TYPE_ASF:I = 0x1a
+  
+  .field public static final FILE_TYPE_AVI:I = 0x1d
+--- 22,29 ----
+  
+  .field public static final FILE_TYPE_AMR:I = 0x4
+  
++ .field public static final FILE_TYPE_APE:I = 0x3e9
++ 
+  .field public static final FILE_TYPE_ASF:I = 0x1a
+  
+  .field public static final FILE_TYPE_AVI:I = 0x1d
+***************
+*** 103,108 ****
+  
+  .field private static final FIRST_DRM_FILE_TYPE:I = 0x33
+  
+  .field private static final FIRST_IMAGE_FILE_TYPE:I = 0x1f
+  
+  .field private static final FIRST_MIDI_FILE_TYPE:I = 0xb
+--- 106,113 ----
+  
+  .field private static final FIRST_DRM_FILE_TYPE:I = 0x33
+  
++ .field private static final FIRST_FFMPEG_AUDIO_FILE_TYPE:I = 0x3e9
++ 
+  .field private static final FIRST_IMAGE_FILE_TYPE:I = 0x1f
+  
+  .field private static final FIRST_MIDI_FILE_TYPE:I = 0xb
+***************
+*** 117,122 ****
+  
+  .field private static final LAST_DRM_FILE_TYPE:I = 0x33
+  
+  .field private static final LAST_IMAGE_FILE_TYPE:I = 0x24
+  
+  .field private static final LAST_MIDI_FILE_TYPE:I = 0xd
+--- 122,129 ----
+  
+  .field private static final LAST_DRM_FILE_TYPE:I = 0x33
+  
++ .field private static final LAST_FFMPEG_AUDIO_FILE_TYPE:I = 0x3e9
++ 
+  .field private static final LAST_IMAGE_FILE_TYPE:I = 0x24
+  
+  .field private static final LAST_MIDI_FILE_TYPE:I = 0xd

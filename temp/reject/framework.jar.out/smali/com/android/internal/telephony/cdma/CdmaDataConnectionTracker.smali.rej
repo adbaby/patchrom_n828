@@ -1,0 +1,52 @@
+*** CdmaDataConnectionTracker.smali	2013-07-08 16:52:46.126630924 +0800
+--- CdmaDataConnectionTracker.smali	2013-07-08 16:54:34.206631844 +0800
+***************
+*** 2251,2256 ****
+      return-object v0
+  .end method
+  
+  .method public declared-synchronized getState(Ljava/lang/String;)Lcom/android/internal/telephony/DataConnectionTracker$State;
+      .locals 1
+      .parameter "apnType"
+--- 2259,2299 ----
+      return-object v0
+  .end method
+  
++ .method getActiveApn()Lcom/android/internal/telephony/ApnSetting;
++     .locals 1
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
++ 
++     .prologue
++     iget-object v0, p0, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;->mActiveApn:Lcom/android/internal/telephony/ApnSetting;
++ 
++     return-object v0
++ .end method
++ 
++ .method getDataConnectionAsyncChannels()Ljava/util/HashMap;
++     .locals 1
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
++ 
++     .annotation system Ldalvik/annotation/Signature;
++         value = {
++             "()",
++             "Ljava/util/HashMap",
++             "<",
++             "Ljava/lang/Integer;",
++             "Lcom/android/internal/telephony/DataConnectionAc;",
++             ">;"
++         }
++     .end annotation
++ 
++     .prologue
++     iget-object v0, p0, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;->mDataConnectionAsyncChannels:Ljava/util/HashMap;
++ 
++     return-object v0
++ .end method
++ 
+  .method public declared-synchronized getState(Ljava/lang/String;)Lcom/android/internal/telephony/DataConnectionTracker$State;
+      .locals 1
+      .parameter "apnType"

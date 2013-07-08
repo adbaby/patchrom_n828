@@ -1,0 +1,42 @@
+*** ResolverActivity.smali	2013-07-08 16:52:40.022630872 +0800
+--- ResolverActivity.smali	2013-07-08 16:54:27.622631788 +0800
+***************
+*** 393,399 ****
+  
+      .prologue
+      .local p5, rList:Ljava/util/List;,"Ljava/util/List<Landroid/content/pm/ResolveInfo;>;"
+!     const v1, 0x1030302
+  
+      invoke-virtual {p0, v1}, Lcom/android/internal/app/ResolverActivity;->setTheme(I)V
+  
+--- 421,427 ----
+  
+      .prologue
+      .local p5, rList:Ljava/util/List;,"Ljava/util/List<Landroid/content/pm/ResolveInfo;>;"
+!     const v1, 0x60d003e
+  
+      invoke-virtual {p0, v1}, Lcom/android/internal/app/ResolverActivity;->setTheme(I)V
+  
+***************
+*** 427,439 ****
+  
+      iput-boolean v0, p0, Lcom/android/internal/app/ResolverActivity;->mAlwaysUseOption:Z
+  
+!     invoke-virtual {p0}, Lcom/android/internal/app/ResolverActivity;->getResources()Landroid/content/res/Resources;
+! 
+!     move-result-object v1
+! 
+!     const v2, 0x10e0032
+! 
+!     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getInteger(I)I
+  
+      move-result v1
+  
+--- 455,461 ----
+  
+      iput-boolean v0, p0, Lcom/android/internal/app/ResolverActivity;->mAlwaysUseOption:Z
+  
+!     invoke-static {p0}, Lcom/android/internal/app/ResolverActivity$Injector;->getMaxColumns(Lcom/android/internal/app/ResolverActivity;)I
+  
+      move-result v1
+  

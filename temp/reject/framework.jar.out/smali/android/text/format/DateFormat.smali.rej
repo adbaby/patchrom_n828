@@ -1,0 +1,21 @@
+*** DateFormat.smali	2013-07-08 16:51:22.630630213 +0800
+--- DateFormat.smali	2013-07-08 16:53:02.758631065 +0800
+***************
+*** 1168,1173 ****
+      move-result-object v5
+  
+      .local v5, value:Ljava/lang/String;
+      if-nez v5, :cond_1
+  
+      invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+--- 1179,1188 ----
+      move-result-object v5
+  
+      .local v5, value:Ljava/lang/String;
++     invoke-static {p0, v5}, Landroid/text/format/DateFormat$Injector;->check24HourFormatForChina(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
++ 
++     move-result-object v5
++ 
+      if-nez v5, :cond_1
+  
+      invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;

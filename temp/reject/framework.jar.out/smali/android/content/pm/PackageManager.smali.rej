@@ -1,0 +1,42 @@
+*** PackageManager.smali	2013-07-08 16:51:53.342630475 +0800
+--- PackageManager.smali	2013-07-08 16:53:36.406631352 +0800
+***************
+*** 14,27 ****
+  # static fields
+  .field public static final ACTION_CLEAN_EXTERNAL_STORAGE:Ljava/lang/String; = "android.content.pm.CLEAN_EXTERNAL_STORAGE"
+  
+  .field public static final COMPONENT_ENABLED_STATE_DEFAULT:I = 0x0
+  
+  .field public static final COMPONENT_ENABLED_STATE_DISABLED:I = 0x2
+  
+  .field public static final COMPONENT_ENABLED_STATE_DISABLED_USER:I = 0x3
+  
+  .field public static final COMPONENT_ENABLED_STATE_ENABLED:I = 0x1
+  
+  .field public static final DELETE_FAILED_DEVICE_POLICY_MANAGER:I = -0x2
+  
+  .field public static final DELETE_FAILED_INTERNAL_ERROR:I = -0x1
+--- 14,36 ----
+  # static fields
+  .field public static final ACTION_CLEAN_EXTERNAL_STORAGE:Ljava/lang/String; = "android.content.pm.CLEAN_EXTERNAL_STORAGE"
+  
++ .field public static final COMPONENT_ENABLED_STATE_ACCESS_CONTROL:I = -0x80000000
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_FIELD:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
++ .end field
++ 
+  .field public static final COMPONENT_ENABLED_STATE_DEFAULT:I = 0x0
+  
+  .field public static final COMPONENT_ENABLED_STATE_DISABLED:I = 0x2
+  
+  .field public static final COMPONENT_ENABLED_STATE_DISABLED_USER:I = 0x3
+  
++ .field public static final COMPONENT_ENABLED_STATE_DISABLE_AUTOSTART:I = 0x40000000
+  .field public static final COMPONENT_ENABLED_STATE_ENABLED:I = 0x1
+  
++ .field public static final COMPONENT_ENABLED_STATE_SHOW_FLOATING_WINDOW:I = 0x8000000
++ 
+  .field public static final DELETE_FAILED_DEVICE_POLICY_MANAGER:I = -0x2
+  
+  .field public static final DELETE_FAILED_INTERNAL_ERROR:I = -0x1

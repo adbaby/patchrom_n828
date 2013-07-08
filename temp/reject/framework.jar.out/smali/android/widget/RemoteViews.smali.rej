@@ -1,0 +1,88 @@
+*** RemoteViews.smali	2013-07-08 16:51:32.558630298 +0800
+--- RemoteViews.smali	2013-07-08 16:53:11.094631137 +0800
+***************
+*** 71,76 ****
+  
+  .field private mBitmapCache:Landroid/widget/RemoteViews$BitmapCache;
+  
+  .field private mIsRoot:Z
+  
+  .field private mIsWidgetCollectionChild:Z
+--- 71,82 ----
+  
+  .field private mBitmapCache:Landroid/widget/RemoteViews$BitmapCache;
+  
++ .field mDefaultTheme:I
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_FIELD:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
++ .end field
++ 
+  .field private mIsRoot:Z
+  
+  .field private mIsWidgetCollectionChild:Z
+***************
+*** 1078,1083 ****
+      .locals 1
+      .parameter "context"
+      .parameter "parent"
+  
+      .prologue
+      sget-object v0, Landroid/widget/RemoteViews;->DEFAULT_ON_CLICK_HANDLER:Landroid/widget/RemoteViews$OnClickHandler;
+--- 1084,1092 ----
+      .locals 1
+      .parameter "context"
+      .parameter "parent"
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
+  
+      .prologue
+      sget-object v0, Landroid/widget/RemoteViews;->DEFAULT_ON_CLICK_HANDLER:Landroid/widget/RemoteViews$OnClickHandler;
+***************
+*** 1106,1111 ****
+      move-result-object v0
+  
+      .local v0, c:Landroid/content/Context;
+      const-string v4, "layout_inflater"
+  
+      invoke-virtual {v0, v4}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+--- 1115,1124 ----
+      move-result-object v0
+  
+      .local v0, c:Landroid/content/Context;
++     iget v4, p0, Landroid/widget/RemoteViews;->mDefaultTheme:I
++ 
++     invoke-virtual {v0, v4}, Landroid/content/Context;->setTheme(I)V
++ 
+      const-string v4, "layout_inflater"
+  
+      invoke-virtual {v0, v4}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+***************
+*** 1536,1541 ****
+  
+      return-void
+  .end method
+  
+  .method public setDisplayedChild(II)V
+      .locals 1
+--- 1549,1567 ----
+  
+      return-void
+  .end method
++ 
++ .method public setDefaultTheme(I)V
++     .locals 0
++     .parameter "id"
++     .annotation build Landroid/annotation/MiuiHook;
++         value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
++     .end annotation
++ 
++     .prologue
++     iput p1, p0, Landroid/widget/RemoteViews;->mDefaultTheme:I
++ 
++     return-void
++ .end method
+  
+  .method public setDisplayedChild(II)V
+      .locals 1

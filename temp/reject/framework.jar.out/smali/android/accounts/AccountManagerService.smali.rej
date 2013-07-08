@@ -1,0 +1,19 @@
+*** AccountManagerService.smali	2013-07-08 16:51:24.610630230 +0800
+--- AccountManagerService.smali	2013-07-08 16:53:04.778631083 +0800
+***************
+*** 2605,2611 ****
+  
+      iget v4, v1, Landroid/content/pm/RegisteredServicesCache$ServiceInfo;->uid:I
+  
+!     invoke-virtual {v2, v4, p2}, Landroid/content/pm/PackageManager;->checkSignatures(II)I
+  
+      move-result v2
+  
+--- 2609,2615 ----
+  
+      iget v4, v1, Landroid/content/pm/RegisteredServicesCache$ServiceInfo;->uid:I
+  
+!     invoke-static {v2, v4, p2, p1}, Landroid/accounts/AccountManagerService$Injector;->checkSignatures(Landroid/content/pm/PackageManager;IILjava/lang/String;)I
+  
+      move-result v2
+  

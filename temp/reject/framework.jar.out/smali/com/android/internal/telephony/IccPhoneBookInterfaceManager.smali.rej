@@ -1,0 +1,30 @@
+*** IccPhoneBookInterfaceManager.smali	2013-07-08 16:52:47.510630936 +0800
+--- IccPhoneBookInterfaceManager.smali	2013-07-08 16:54:35.706631857 +0800
+***************
+*** 140,145 ****
+      return-void
+  .end method
+  
+  .method public getAdnRecordsInEf(I)Ljava/util/List;
+      .locals 5
+      .parameter "efid"
+--- 140,158 ----
+      return-void
+  .end method
+  
++ .method public getAdnCapacity()I
++     .locals 1
++ 
++     .prologue
++     iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->adnCache:Lcom/android/internal/telephony/AdnRecordCache;
++ 
++     invoke-virtual {v0}, Lcom/android/internal/telephony/AdnRecordCache;->getAdnCapacity()I
++ 
++     move-result v0
++ 
++     return v0
++ .end method
++ 
+  .method public getAdnRecordsInEf(I)Ljava/util/List;
+      .locals 5
+      .parameter "efid"
