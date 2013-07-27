@@ -1,3 +1,8 @@
 *.swp
 out
 stockrom.zip
+.delete-zip-file-when-clean
+temp/dst_smali_orig/
+temp/dst_smali_patched/
+temp/new_smali/
+temp/old_smali/
