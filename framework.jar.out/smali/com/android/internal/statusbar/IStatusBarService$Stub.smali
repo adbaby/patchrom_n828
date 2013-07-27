@@ -64,6 +64,8 @@
 
 .field static final TRANSACTION_setImeWindowStatus:I = 0x8
 
+.field static final TRANSACTION_setStatus:I = 0x19
+
 .field static final TRANSACTION_setSystemUiVisibility:I = 0x11
 
 .field static final TRANSACTION_showApplicationGuide:I = 0x18
@@ -1025,7 +1027,8 @@
 
     goto/16 :goto_0
 
-    :sswitch_14
+    .end local v2           #_arg0:Ljava/lang/String;
+    :sswitch_19
     const-string v1, "com.android.internal.statusbar.IStatusBarService"
 
     move-object/from16 v0, p2
@@ -1106,6 +1109,7 @@
         0x16 -> :sswitch_16
         0x17 -> :sswitch_17
         0x18 -> :sswitch_18
+        0x19 -> :sswitch_19
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method
