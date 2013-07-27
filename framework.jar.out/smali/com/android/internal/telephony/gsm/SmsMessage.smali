@@ -465,9 +465,6 @@
 .method public static createFromPdu([B)Lcom/android/internal/telephony/gsm/SmsMessage;
     .locals 4
     .parameter "pdu"
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->CHANGE_CODE:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
 
     .prologue
     .line 137
@@ -4517,9 +4514,12 @@
 
     move-result-object v3
 
+    iput-object v3, p0, Lcom/android/internal/telephony/gsm/SmsMessage;->recipientAddress:Lcom/android/internal/telephony/gsm/GsmSmsAddress;
+
+    iget-object v3, p0, Lcom/android/internal/telephony/gsm/SmsMessage;->recipientAddress:Lcom/android/internal/telephony/gsm/GsmSmsAddress;
+
     iput-object v3, p0, Lcom/android/internal/telephony/SmsMessageBase;->destinationAddress:Lcom/android/internal/telephony/SmsAddress;
 
-    .line 1843
     iget-object v3, p0, Lcom/android/internal/telephony/SmsMessageBase;->destinationAddress:Lcom/android/internal/telephony/SmsAddress;
 
     if-eqz v3, :cond_0
@@ -4672,111 +4672,6 @@
         0x10 -> :sswitch_1
         0x18 -> :sswitch_3
     .end sparse-switch
-.end method
-
-.method private parseSmsSubmit(Lcom/android/internal/telephony/gsm/SmsMessage$PduParser;I)V
-    .locals 6
-    .parameter "p"
-    .parameter "firstByte"
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    const/4 v2, 0x1
-
-    const/4 v3, 0x0
-
-    and-int/lit16 v1, p2, 0x80
-
-    const/16 v4, 0x80
-
-    if-ne v1, v4, :cond_1
-
-    move v1, v2
-
-    :goto_0
-    iput-boolean v1, p0, Lcom/android/internal/telephony/gsm/SmsMessage;->replyPathPresent:Z
-
-    invoke-virtual {p1}, Lcom/android/internal/telephony/gsm/SmsMessage$PduParser;->getByte()I
-
-    move-result v1
-
-    iput v1, p0, Lcom/android/internal/telephony/gsm/SmsMessage;->messageRef:I
-
-    invoke-virtual {p1}, Lcom/android/internal/telephony/gsm/SmsMessage$PduParser;->getAddress()Lcom/android/internal/telephony/gsm/GsmSmsAddress;
-
-    move-result-object v1
-
-    iput-object v1, p0, Lcom/android/internal/telephony/gsm/SmsMessage;->recipientAddress:Lcom/android/internal/telephony/gsm/GsmSmsAddress;
-
-    iget-object v1, p0, Lcom/android/internal/telephony/gsm/SmsMessage;->recipientAddress:Lcom/android/internal/telephony/gsm/GsmSmsAddress;
-
-    if-eqz v1, :cond_0
-
-    const-string v1, "GSM"
-
-    new-instance v4, Ljava/lang/StringBuilder;
-
-    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v5, "SMS recipient address: "
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    iget-object v5, p0, Lcom/android/internal/telephony/gsm/SmsMessage;->recipientAddress:Lcom/android/internal/telephony/gsm/GsmSmsAddress;
-
-    iget-object v5, v5, Lcom/android/internal/telephony/gsm/GsmSmsAddress;->address:Ljava/lang/String;
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-static {v1, v4}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
-
-    :cond_0
-    invoke-virtual {p1}, Lcom/android/internal/telephony/gsm/SmsMessage$PduParser;->getByte()I
-
-    move-result v1
-
-    iput v1, p0, Lcom/android/internal/telephony/gsm/SmsMessage;->protocolIdentifier:I
-
-    invoke-virtual {p1}, Lcom/android/internal/telephony/gsm/SmsMessage$PduParser;->getByte()I
-
-    move-result v1
-
-    iput v1, p0, Lcom/android/internal/telephony/gsm/SmsMessage;->dataCodingScheme:I
-
-    and-int/lit8 v1, p2, 0x40
-
-    const/16 v4, 0x40
-
-    if-ne v1, v4, :cond_2
-
-    move v0, v2
-
-    .local v0, hasUserDataHeader:Z
-    :goto_1
-    invoke-direct {p0, p1, v0}, Lcom/android/internal/telephony/gsm/SmsMessage;->parseUserData(Lcom/android/internal/telephony/gsm/SmsMessage$PduParser;Z)V
-
-    return-void
-
-    .end local v0           #hasUserDataHeader:Z
-    :cond_1
-    move v1, v3
-
-    goto :goto_0
-
-    :cond_2
-    move v0, v3
-
-    goto :goto_1
 .end method
 
 .method private parseUserData(Lcom/android/internal/telephony/gsm/SmsMessage$PduParser;Z)V
@@ -5421,10 +5316,7 @@
 .end method
 
 .method public getRecipientAddress()Ljava/lang/String;
-    .locals 2
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
+    .locals 1
 
     .prologue
     iget-object v0, p0, Lcom/android/internal/telephony/gsm/SmsMessage;->recipientAddress:Lcom/android/internal/telephony/gsm/GsmSmsAddress;
@@ -5441,12 +5333,6 @@
     return-object v0
 
     :cond_0
-    const-string v0, "GSM"
-
-    const-string v1, "SMS recipient address is null"
-
-    invoke-static {v0, v1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
-
     const/4 v0, 0x0
 
     goto :goto_0
