@@ -215,27 +215,21 @@
     .line 97
     new-instance v7, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
-    const/4 v8, 0x0
-
-    invoke-direct {v7, p0, v8}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;Lcom/android/internal/widget/multiwaveview/GlowPadView$1;)V
+    invoke-direct {v7, p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;)V
 
     iput-object v7, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mWaveAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
     .line 98
     new-instance v7, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
-    const/4 v8, 0x0
-
-    invoke-direct {v7, p0, v8}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;Lcom/android/internal/widget/multiwaveview/GlowPadView$1;)V
+    invoke-direct {v7, p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;)V
 
     iput-object v7, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
     .line 99
     new-instance v7, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
-    const/4 v8, 0x0
-
-    invoke-direct {v7, p0, v8}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;Lcom/android/internal/widget/multiwaveview/GlowPadView$1;)V
+    invoke-direct {v7, p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;-><init>(Lcom/android/internal/widget/multiwaveview/GlowPadView;)V
 
     iput-object v7, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mGlowAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
 
@@ -1982,7 +1976,7 @@
 
     move-result v3
 
-    invoke-direct {p0, v1, v2, v3}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->switchToState(IFF)V
+    invoke-virtual {p0, v1, v2, v3}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->switchToState(IFF)V
 
     .line 863
     return-void
@@ -2014,7 +2008,7 @@
     .local v2, eventY:F
     const/4 v3, 0x1
 
-    invoke-direct {p0, v3, v1, v2}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->switchToState(IFF)V
+    invoke-virtual {p0, v3, v1, v2}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->switchToState(IFF)V
 
     .line 838
     invoke-direct {p0, v1, v2}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->trySwitchToFirstTouchState(FF)Z
@@ -2046,7 +2040,7 @@
     goto :goto_0
 .end method
 
-.method private handleMove(Landroid/view/MotionEvent;)V
+.method handleMove(Landroid/view/MotionEvent;)V
     .locals 39
     .parameter "event"
 
@@ -2910,7 +2904,7 @@
 
     move-result v3
 
-    invoke-direct {p0, v1, v2, v3}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->switchToState(IFF)V
+    invoke-virtual {p0, v1, v2, v3}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->switchToState(IFF)V
 
     .line 852
     :cond_1
@@ -4064,7 +4058,7 @@
     return-void
 .end method
 
-.method private showTargets(Z)V
+.method showTargets(Z)V
     .locals 13
     .parameter "animate"
 
@@ -4935,13 +4929,13 @@
 
     .line 1178
     .local v0, angle:F
-    invoke-direct {p0, p1, p2, p3, v0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->updateTargetPosition(IFFF)V
+    invoke-virtual {p0, p1, p2, p3, v0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->updateTargetPosition(IFFF)V
 
     .line 1179
     return-void
 .end method
 
-.method private updateTargetPosition(IFFF)V
+.method updateTargetPosition(IFFF)V7
     .locals 6
     .parameter "i"
     .parameter "centerX"
@@ -5077,7 +5071,7 @@
 
     move-result v3
 
-    invoke-direct {p0, v1, p1, p2, v3}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->updateTargetPosition(IFFF)V
+    invoke-virtual {p0, v1, p1, p2, v3}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->updateTargetPosition(IFFF)V
 
     .line 1202
     :cond_1
@@ -5145,6 +5139,74 @@
 
 
 # virtual methods
+.method callAnnounceTargets()V
+    .locals 0
+
+    .prologue
+    invoke-direct {p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->announceTargets()V
+
+    return-void
+.end method
+
+.method callDeactivateTargets()V
+    .locals 0
+
+    .prologue
+    invoke-direct {p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->deactivateTargets()V
+
+    return-void
+.end method
+
+.method callDispatchTriggerEvent(I)V
+    .locals 0
+    .parameter "whichTarget"
+
+    .prologue
+    invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->dispatchTriggerEvent(I)V
+
+    return-void
+.end method
+
+.method callGetTargetDescription(I)Ljava/lang/String;
+    .locals 1
+    .parameter "index"
+
+    .prologue
+    invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->getTargetDescription(I)Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method callSetGrabbedState(I)V
+    .locals 0
+    .parameter "newState"
+
+    .prologue
+    invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->setGrabbedState(I)V
+
+    return-void
+.end method
+
+.method callVibrate()V
+    .locals 0
+
+    .prologue
+    invoke-direct {p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->vibrate()V
+
+    return-void
+.end method
+
+.method getActiveTarget()I
+    .locals 1
+
+    .prologue
+    iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mActiveTarget:I
+
+    return v0
+.end method
+
 .method public getDirectionDescriptionsResourceId()I
     .locals 1
 
@@ -5153,6 +5215,60 @@
     iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mDirectionDescriptionsResourceId:I
 
     return v0
+.end method
+
+.method getDragging()Z
+    .locals 1
+
+    .prologue
+    iget-boolean v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mDragging:Z
+
+    return v0
+.end method
+
+.method getHandleDrawable()Lcom/android/internal/widget/multiwaveview/TargetDrawable;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mHandleDrawable:Lcom/android/internal/widget/multiwaveview/TargetDrawable;
+
+    return-object v0
+.end method
+
+.method getOuterRadius()F
+    .locals 1
+
+    .prologue
+    iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mOuterRadius:F
+
+    return v0
+.end method
+
+.method getOuterRing()Lcom/android/internal/widget/multiwaveview/TargetDrawable;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mOuterRing:Lcom/android/internal/widget/multiwaveview/TargetDrawable;
+
+    return-object v0
+.end method
+
+.method getResetListener()Landroid/animation/Animator$AnimatorListener;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mResetListener:Landroid/animation/Animator$AnimatorListener;
+
+    return-object v0
+.end method
+
+.method getResetListenerWithPing()Landroid/animation/Animator$AnimatorListener;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mResetListenerWithPing:Landroid/animation/Animator$AnimatorListener;
+
+    return-object v0
 .end method
 
 .method public getResourceIdForTarget(I)I
@@ -5262,6 +5378,15 @@
     return v0
 .end method
 
+.method getSnapMargin()F
+    .locals 1
+
+    .prologue
+    iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mSnapMargin:F
+
+    return v0
+.end method
+
 .method protected getSuggestedMinimumHeight()I
     .locals 3
 
@@ -5330,6 +5455,15 @@
     return v0
 .end method
 
+.method getTargetAnimations()Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
+
+    return-object v0
+.end method
+
 .method public getTargetDescriptionsResourceId()I
     .locals 1
 
@@ -5338,6 +5472,24 @@
     iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetDescriptionsResourceId:I
 
     return v0
+.end method
+
+.method getTargetDrawables()Ljava/util/ArrayList;
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/ArrayList",
+            "<",
+            "Lcom/android/internal/widget/multiwaveview/TargetDrawable;",
+            ">;"
+        }
+    .end annotation
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetDrawables:Ljava/util/ArrayList;
+
+    return-object v0
 .end method
 
 .method public getTargetPosition(I)I
@@ -5403,6 +5555,33 @@
     .prologue
     .line 646
     iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetResourceId:I
+
+    return v0
+.end method
+
+.method getUpdateListener()Landroid/animation/ValueAnimator$AnimatorUpdateListener;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mUpdateListener:Landroid/animation/ValueAnimator$AnimatorUpdateListener;
+
+    return-object v0
+.end method
+
+.method getWaveCenterX()F
+    .locals 1
+
+    .prologue
+    iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mWaveCenterX:F
+
+    return v0
+.end method
+
+.method getWaveCenterY()F
+    .locals 1
+
+    .prologue
+    iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mWaveCenterY:F
 
     return v0
 .end method
@@ -5787,8 +5966,7 @@
     .line 789
     invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleDown(Landroid/view/MotionEvent;)V
 
-    .line 790
-    invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleMove(Landroid/view/MotionEvent;)V
+    invoke-virtual {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleMove(Landroid/view/MotionEvent;)V
 
     .line 791
     const/4 v1, 0x1
@@ -5804,8 +5982,7 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 796
-    invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleMove(Landroid/view/MotionEvent;)V
+    invoke-virtual {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleMove(Landroid/view/MotionEvent;)V
 
     .line 797
     const/4 v1, 0x1
@@ -5826,8 +6003,7 @@
 
     iput-boolean v3, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mActionCancel:Z
 
-    .line 805
-    invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleMove(Landroid/view/MotionEvent;)V
+    invoke-virtual {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleMove(Landroid/view/MotionEvent;)V
 
     .line 806
     invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleUp(Landroid/view/MotionEvent;)V
@@ -5849,8 +6025,7 @@
     .line 813
     iput-boolean v2, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mActionCancel:Z
 
-    .line 814
-    invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleMove(Landroid/view/MotionEvent;)V
+    invoke-virtual {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleMove(Landroid/view/MotionEvent;)V
 
     .line 815
     invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->handleCancel(Landroid/view/MotionEvent;)V
@@ -6151,8 +6326,7 @@
     .line 761
     invoke-direct {p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->stopAndHideWaveAnimation()V
 
-    .line 762
-    invoke-direct {p0, p1, v1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->hideTargets(ZZ)V
+    invoke-virtual {p0, p1, v1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->hideTargets(ZZ)V
 
     .line 763
     const/4 v0, 0x0
@@ -6202,7 +6376,26 @@
 
     invoke-virtual {v0}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;->start()V
 
-    .line 311
+    return-void
+.end method
+
+.method setActiveTarget(I)V
+    .locals 0
+    .parameter "value"
+
+    .prologue
+    iput p1, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mActiveTarget:I
+
+    return-void
+.end method
+
+.method setAnimatingTargets(Z)V
+    .locals 0
+    .parameter "value"
+
+    .prologue
+    iput-boolean p1, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mAnimatingTargets:Z
+
     return-void
 .end method
 
@@ -6226,6 +6419,16 @@
 
     .line 680
     :cond_0
+    return-void
+.end method
+
+.method setDragging(Z)V
+    .locals 0
+    .parameter "value"
+
+    .prologue
+    iput-boolean p1, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mDragging:Z
+
     return-void
 .end method
 
@@ -6279,6 +6482,16 @@
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
+.end method
+
+.method setGlowRadius(F)V
+    .locals 0
+    .parameter "value"
+
+    .prologue
+    iput p1, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mGlowRadius:F
+
+    return-void
 .end method
 
 .method public setHandleDrawableImage(I)V
@@ -6428,311 +6641,5 @@
     invoke-virtual {v0, v1}, Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;->setSuspended(Z)V
 
     .line 302
-    return-void
-.end method
-
-.method callAnnounceTargets()V
-    .locals 0
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    invoke-direct {p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->announceTargets()V
-
-    return-void
-.end method
-
-.method callDeactivateTargets()V
-    .locals 0
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    invoke-direct {p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->deactivateTargets()V
-
-    return-void
-.end method
-
-.method callDispatchTriggerEvent(I)V
-    .locals 0
-    .parameter "whichTarget"
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->dispatchTriggerEvent(I)V
-
-    return-void
-.end method
-
-.method callGetTargetDescription(I)Ljava/lang/String;
-    .locals 1
-    .parameter "index"
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->getTargetDescription(I)Ljava/lang/String;
-
-    move-result-object v0
-
-    return-object v0
-.end method
-
-.method callSetGrabbedState(I)V
-    .locals 0
-    .parameter "newState"
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    invoke-direct {p0, p1}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->setGrabbedState(I)V
-
-    return-void
-.end method
-
-.method callVibrate()V
-    .locals 0
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    invoke-direct {p0}, Lcom/android/internal/widget/multiwaveview/GlowPadView;->vibrate()V
-
-    return-void
-.end method
-
-.method getActiveTarget()I
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mActiveTarget:I
-
-    return v0
-.end method
-
-.method getDragging()Z
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget-boolean v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mDragging:Z
-
-    return v0
-.end method
-
-.method getHandleDrawable()Lcom/android/internal/widget/multiwaveview/TargetDrawable;
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mHandleDrawable:Lcom/android/internal/widget/multiwaveview/TargetDrawable;
-
-    return-object v0
-.end method
-
-.method getOuterRadius()F
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mOuterRadius:F
-
-    return v0
-.end method
-
-.method getOuterRing()Lcom/android/internal/widget/multiwaveview/TargetDrawable;
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mOuterRing:Lcom/android/internal/widget/multiwaveview/TargetDrawable;
-
-    return-object v0
-.end method
-
-.method getResetListener()Landroid/animation/Animator$AnimatorListener;
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mResetListener:Landroid/animation/Animator$AnimatorListener;
-
-    return-object v0
-.end method
-
-.method getResetListenerWithPing()Landroid/animation/Animator$AnimatorListener;
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mResetListenerWithPing:Landroid/animation/Animator$AnimatorListener;
-
-    return-object v0
-.end method
-
-.method getSnapMargin()F
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mSnapMargin:F
-
-    return v0
-.end method
-
-.method getTargetAnimations()Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetAnimations:Lcom/android/internal/widget/multiwaveview/GlowPadView$AnimationBundle;
-
-    return-object v0
-.end method
-
-.method getTargetDrawables()Ljava/util/ArrayList;
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()",
-            "Ljava/util/ArrayList",
-            "<",
-            "Lcom/android/internal/widget/multiwaveview/TargetDrawable;",
-            ">;"
-        }
-    .end annotation
-
-    .prologue
-    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mTargetDrawables:Ljava/util/ArrayList;
-
-    return-object v0
-.end method
-
-.method getUpdateListener()Landroid/animation/ValueAnimator$AnimatorUpdateListener;
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget-object v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mUpdateListener:Landroid/animation/ValueAnimator$AnimatorUpdateListener;
-
-    return-object v0
-.end method
-
-.method getWaveCenterX()F
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mWaveCenterX:F
-
-    return v0
-.end method
-
-.method getWaveCenterY()F
-    .locals 1
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iget v0, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mWaveCenterY:F
-
-    return v0
-.end method
-
-.method setActiveTarget(I)V
-    .locals 0
-    .parameter "value"
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iput p1, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mActiveTarget:I
-
-    return-void
-.end method
-
-.method setAnimatingTargets(Z)V
-    .locals 0
-    .parameter "value"
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iput-boolean p1, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mAnimatingTargets:Z
-
-    return-void
-.end method
-
-.method setDragging(Z)V
-    .locals 0
-    .parameter "value"
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iput-boolean p1, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mDragging:Z
-
-    return-void
-.end method
-
-.method setGlowRadius(F)V
-    .locals 0
-    .parameter "value"
-    .annotation build Landroid/annotation/MiuiHook;
-        value = .enum Landroid/annotation/MiuiHook$MiuiHookType;->NEW_METHOD:Landroid/annotation/MiuiHook$MiuiHookType;
-    .end annotation
-
-    .prologue
-    iput p1, p0, Lcom/android/internal/widget/multiwaveview/GlowPadView;->mGlowRadius:F
-
-    return-void
-.end method
-
-.method updateTargetPosition(IFFF)V
-    .locals 0
-    .parameter "i"
-    .parameter "centerX"
-    .parameter "centerY"
-    .parameter "angle"
-
-    .prologue
     return-void
 .end method
