@@ -28,11 +28,15 @@
 
 .field static final TRANSACTION_addContactToGroup:I = 0x11
 
+.field static final TRANSACTION_getAdnCapacity:I = 0x22
+
 .field static final TRANSACTION_getAdnRecordsInEf:I = 0x1
 
 .field static final TRANSACTION_getAdnRecordsSize:I = 0xa
 
 .field static final TRANSACTION_getAnrCount:I = 0x19
+
+.field static final TRANSACTION_getFreeAdn:I = 0x21
 
 .field static final TRANSACTION_getPhonebookMemStorageExt:I = 0x20
 
@@ -1760,38 +1764,49 @@
 
     goto/16 :goto_0
 
-    .end local v1           #_arg0:I
-    .end local v7           #_result:[I
-    :sswitch_5
-    const-string v0, "com.android.internal.telephony.IIccPhoneBook"
+    .end local v14           #_result:[Lcom/android/internal/telephony/gsm/UsimPBMemInfo;
+    :sswitch_21
+    const-string v2, "com.android.internal.telephony.IIccPhoneBook"
 
-    invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    move-object/from16 v0, p2
 
-    invoke-virtual {p0}, Lcom/android/internal/telephony/IIccPhoneBook$Stub;->getFreeAdn()I
+    invoke-virtual {v0, v2}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    move-result v7
+    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/telephony/IIccPhoneBook$Stub;->getFreeAdn()I
 
-    .local v7, _result:I
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+    move-result v14
 
-    invoke-virtual {p3, v7}, Landroid/os/Parcel;->writeInt(I)V
+    .local v14, _result:I
+    invoke-virtual/range {p3 .. p3}, Landroid/os/Parcel;->writeNoException()V
+
+    move-object/from16 v0, p3
+
+    invoke-virtual {v0, v14}, Landroid/os/Parcel;->writeInt(I)V
+
+    const/4 v2, 0x1
 
     goto/16 :goto_0
 
-    .end local v7           #_result:I
-    :sswitch_6
-    const-string v0, "com.android.internal.telephony.IIccPhoneBook"
+    .end local v14           #_result:I
+    :sswitch_22
+    const-string v2, "com.android.internal.telephony.IIccPhoneBook"
 
-    invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+    move-object/from16 v0, p2
 
-    invoke-virtual {p0}, Lcom/android/internal/telephony/IIccPhoneBook$Stub;->getAdnCapacity()I
+    invoke-virtual {v0, v2}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    move-result v7
+    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/telephony/IIccPhoneBook$Stub;->getAdnCapacity()I
 
-    .restart local v7       #_result:I
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+    move-result v14
 
-    invoke-virtual {p3, v7}, Landroid/os/Parcel;->writeInt(I)V
+    .restart local v14       #_result:I
+    invoke-virtual/range {p3 .. p3}, Landroid/os/Parcel;->writeNoException()V
+
+    move-object/from16 v0, p3
+
+    invoke-virtual {v0, v14}, Landroid/os/Parcel;->writeInt(I)V
+
+    const/4 v2, 0x1
 
     goto/16 :goto_0
 
@@ -1831,6 +1846,8 @@
         0x1e -> :sswitch_1e
         0x1f -> :sswitch_1f
         0x20 -> :sswitch_20
+        0x21 -> :sswitch_21
+        0x22 -> :sswitch_22
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method
