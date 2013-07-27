@@ -6,7 +6,8 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/internal/telephony/gsm/GsmServiceStateTracker$5;
+        Lcom/android/internal/telephony/gsm/GsmServiceStateTracker$5;,
+        Lcom/android/internal/telephony/gsm/GsmServiceStateTracker$Injector;
     }
 .end annotation
 
@@ -10787,6 +10788,15 @@
     iget-object v0, p0, Lcom/android/internal/telephony/gsm/GsmServiceStateTracker;->phone:Lcom/android/internal/telephony/gsm/GSMPhone;
 
     return-object v0
+.end method
+
+.method getRilRadioTechnology()I
+    .locals 1
+
+    .prologue
+    iget v0, p0, Lcom/android/internal/telephony/gsm/GsmServiceStateTracker;->mRilRadioTechnology:I
+
+    return v0
 .end method
 
 .method public handleMessage(Landroid/os/Message;)V
