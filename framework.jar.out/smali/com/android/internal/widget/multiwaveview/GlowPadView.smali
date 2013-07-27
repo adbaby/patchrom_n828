@@ -4935,7 +4935,7 @@
     return-void
 .end method
 
-.method updateTargetPosition(IFFF)V7
+.method updateTargetPosition(IFFF)V
     .locals 6
     .parameter "i"
     .parameter "centerX"
