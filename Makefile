@@ -7,17 +7,11 @@ local-zip-file     := stockrom.zip
 
 # All apps need to be removed from original ZIP file
 local-remove-apps   := \
-	360box_tegongji_20130206 \
-	360Browser_Android_Amoi_20130206 \
-	360buy_android_v2.2.0_oem-amoi201334 \
-	360mobilesafe_3.7.0.4583_AMOI_N828 \
 	360Zhuomian \
-	AMAP_VER_4_1_3_1_Amoi \
 	AmoiAfterService \
 	AmoiCustomerCare \
 	AmoiCustomRingTone \
 	AmoiEngineerMode \
-	amoi_n828_20130305 \
 	AmoiTools \
 	APKInstaller \
 	ApplicationGuide \
@@ -25,43 +19,65 @@ local-remove-apps   := \
 	BatteryWarning \
 	CalendarImporter \
 	CDS_INFO \
+	CellBroadcastReceiver \
 	DataTransfer \
 	DataUsageLockScreenClient \
+	DrmProvider \
 	EngineerMode \
 	EngineerModeSim \
 	FileManager \
 	FMRadio \
 	FusedLocation \
+	Galaxy4 \
+	Gallery2 \
+	HoloSpiralWallpaper \
+	HTMLViewer \
 	IReader \
+	LiveWallpapers \
+	LiveWallpapersPicker \
 	LocationEM \
+	MagicSmokeWallpapers \
 	MTKAndroidSuiteDaemon \
 	MTKLogger \
 	MTKThermalManager \
 	MtkWeatherProvider \
 	MtkWeatherWidget \
 	MtkWorldClockWidget \
-	Navigator2c_V5.3.8828.0137_21047 \
+	MusicFX \
+	NoiseField \
 	NoteBook \
 	Omacp \
 	OOBE \
 	OP02Plugin \
+	PhaseBeam \
 	PhotoTable \
-	Sanguo_AndroidAuto_New_CCABQN08_327 \
+	PicoTts \
+	Protips \
 	SchedulePowerOnOff \
-	shaft_android2_CCABQN04_0322 \
 	SogouInput \
-	theme-res-mint \
-	theme-res-mocha \
-	theme-res-raspberry \
 	Todos \
+	VideoEditor \
 	VideoFavorites \
 	VideoPlayer \
+	VisualizationWallpapers \
 	VoiceCommand \
 	VoiceUnlock \
 	Weather3DWidget \
 	Weibo \
-	xmqx_20121218_C001 \
 	YGPS
+
+# To include the local targets before and after zip the final ZIP file, 
+# and the local-targets should: 
+# (1) be defined after including porting.mk if using any global variable(see porting.mk)
+# (2) the name should be leaded with local- to prevent any conflict with global targets
+local-pre-zip := local-zip-misc
+local-after-zip :=
 
 include $(PORT_BUILD)/porting.mk
 
+# To define any local-target
+local-zip-misc:
+	rm -rf $(ZIP_DIR)/system/backup/
+	rm $(ZIP_DIR)/system/framework/theme-res-mint.apk
+	rm $(ZIP_DIR)/system/framework/theme-res-mocha.apk
+	rm $(ZIP_DIR)/system/framework/theme-res-raspberry.apk
