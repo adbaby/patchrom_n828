@@ -23,7 +23,6 @@
     .locals 3
 
     .prologue
-    .line 802
     invoke-static {}, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$UnlockMode;->values()[Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$UnlockMode;
 
     move-result-object v0

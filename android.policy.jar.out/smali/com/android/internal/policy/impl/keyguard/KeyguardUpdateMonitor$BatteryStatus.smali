@@ -33,22 +33,16 @@
     .parameter "health"
 
     .prologue
-    .line 544
     invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
 
-    .line 545
     iput p1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor$BatteryStatus;->status:I
 
-    .line 546
     iput p2, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor$BatteryStatus;->level:I
 
-    .line 547
     iput p3, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor$BatteryStatus;->plugged:I
 
-    .line 548
     iput p4, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor$BatteryStatus;->health:I
 
-    .line 549
     return-void
 .end method
 
@@ -58,7 +52,6 @@
     .locals 2
 
     .prologue
-    .line 576
     iget v0, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor$BatteryStatus;->level:I
 
     const/16 v1, 0x10
@@ -80,7 +73,6 @@
     .locals 2
 
     .prologue
-    .line 568
     iget v0, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor$BatteryStatus;->status:I
 
     const/4 v1, 0x5
@@ -111,7 +103,6 @@
     .prologue
     const/4 v0, 0x1
 
-    .line 556
     iget v1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor$BatteryStatus;->plugged:I
 
     if-eq v1, v0, :cond_0

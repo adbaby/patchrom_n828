@@ -27,7 +27,6 @@
     .parameter
 
     .prologue
-    .line 403
     iput-object p1, p0, Lcom/android/internal/policy/impl/keyguard_obsolete/LockScreen$2;->this$0:Lcom/android/internal/policy/impl/keyguard_obsolete/LockScreen;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -41,7 +40,6 @@
     .locals 1
 
     .prologue
-    .line 405
     iget-object v0, p0, Lcom/android/internal/policy/impl/keyguard_obsolete/LockScreen$2;->this$0:Lcom/android/internal/policy/impl/keyguard_obsolete/LockScreen;
 
     #getter for: Lcom/android/internal/policy/impl/keyguard_obsolete/LockScreen;->mCallback:Lcom/android/internal/policy/impl/keyguard_obsolete/KeyguardScreenCallback;
@@ -51,6 +49,5 @@
 
     invoke-interface {v0}, Lcom/android/internal/policy/impl/keyguard_obsolete/KeyguardScreenCallback;->goToUnlockScreen()V
 
-    .line 406
     return-void
 .end method

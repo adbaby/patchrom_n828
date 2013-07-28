@@ -25,18 +25,14 @@
     .parameter "context"
 
     .prologue
-    .line 135
     iput-object p1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager$ViewManagerHost;->this$0:Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;
 
-    .line 136
     invoke-direct {p0, p2}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;)V
 
-    .line 137
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager$ViewManagerHost;->setFitsSystemWindows(Z)V
 
-    .line 139
     invoke-virtual {p2}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
@@ -50,7 +46,6 @@
     #setter for: Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;->mCreateOrientation:I
     invoke-static {p1, v0}, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;->access$002(Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;I)I
 
-    .line 140
     return-void
 .end method
 
@@ -65,7 +60,6 @@
 
     const/4 v2, 0x1
 
-    .line 160
     invoke-virtual {p1}, Landroid/view/KeyEvent;->getAction()I
 
     move-result v1
@@ -81,12 +75,10 @@
 
     if-eqz v1, :cond_6
 
-    .line 161
     invoke-virtual {p1}, Landroid/view/KeyEvent;->getKeyCode()I
 
     move-result v0
 
-    .line 162
     .local v0, keyCode:I
     const/4 v1, 0x4
 
@@ -107,12 +99,10 @@
 
     move v1, v2
 
-    .line 185
     .end local v0           #keyCode:I
     :goto_0
     return v1
 
-    .line 164
     .restart local v0       #keyCode:I
     :cond_0
     const/16 v1, 0x52
@@ -134,10 +124,8 @@
 
     move v1, v2
 
-    .line 165
     goto :goto_0
 
-    .line 168
     :cond_1
     const/16 v1, 0x18
 
@@ -147,11 +135,9 @@
 
     if-ne v0, v1, :cond_6
 
-    .line 169
     :cond_2
     monitor-enter p0
 
-    .line 170
     :try_start_0
     iget-object v1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager$ViewManagerHost;->this$0:Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;
 
@@ -162,7 +148,6 @@
 
     if-nez v1, :cond_3
 
-    .line 171
     iget-object v4, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager$ViewManagerHost;->this$0:Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;
 
     invoke-virtual {p0}, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager$ViewManagerHost;->getContext()Landroid/content/Context;
@@ -180,13 +165,11 @@
     #setter for: Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;->mAudioManager:Landroid/media/AudioManager;
     invoke-static {v4, v1}, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;->access$602(Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;Landroid/media/AudioManager;)Landroid/media/AudioManager;
 
-    .line 174
     :cond_3
     monitor-exit p0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 176
     iget-object v1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager$ViewManagerHost;->this$0:Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;
 
     #getter for: Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;->mAudioManager:Landroid/media/AudioManager;
@@ -202,10 +185,8 @@
 
     move v1, v3
 
-    .line 177
     goto :goto_0
 
-    .line 174
     :catchall_0
     move-exception v1
 
@@ -216,7 +197,6 @@
 
     throw v1
 
-    .line 178
     :cond_4
     iget-object v1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager$ViewManagerHost;->this$0:Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;
 
@@ -233,16 +213,13 @@
 
     move v1, v3
 
-    .line 179
     goto :goto_0
 
     :cond_5
     move v1, v2
 
-    .line 181
     goto :goto_0
 
-    .line 185
     .end local v0           #keyCode:I
     :cond_6
     invoke-super {p0, p1}, Landroid/widget/FrameLayout;->dispatchKeyEvent(Landroid/view/KeyEvent;)Z
@@ -257,10 +234,8 @@
     .parameter "newConfig"
 
     .prologue
-    .line 144
     invoke-super {p0, p1}, Landroid/widget/FrameLayout;->onConfigurationChanged(Landroid/content/res/Configuration;)V
 
-    .line 146
     invoke-static {}, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;->access$100()Ljava/lang/String;
 
     move-result-object v0
@@ -304,7 +279,6 @@
 
     invoke-static {v0, v1}, Lcom/android/internal/policy/impl/keyguard/KeyguardUtils;->xlogD(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 150
     iget-object v0, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager$ViewManagerHost;->this$0:Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;
 
     #getter for: Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;->mKeyguardHost:Landroid/widget/FrameLayout;
@@ -329,7 +303,6 @@
 
     if-eq v0, v1, :cond_0
 
-    .line 152
     iget-object v0, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager$ViewManagerHost;->this$0:Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;
 
     iget-object v1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager$ViewManagerHost;->this$0:Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;
@@ -346,11 +319,9 @@
     #calls: Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;->maybeCreateKeyguardLocked(ZZLandroid/os/Bundle;)V
     invoke-static {v0, v1, v2, v3}, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;->access$400(Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;ZZLandroid/os/Bundle;)V
 
-    .line 156
     :goto_0
     return-void
 
-    .line 154
     :cond_0
     invoke-static {}, Lcom/android/internal/policy/impl/keyguard/KeyguardViewManager;->access$100()Ljava/lang/String;
 

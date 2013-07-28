@@ -23,7 +23,6 @@
     .locals 3
 
     .prologue
-    .line 116
     invoke-static {}, Lcom/android/internal/policy/impl/keyguard_obsolete/PatternUnlockScreen$FooterMode;->values()[Lcom/android/internal/policy/impl/keyguard_obsolete/PatternUnlockScreen$FooterMode;
 
     move-result-object v0

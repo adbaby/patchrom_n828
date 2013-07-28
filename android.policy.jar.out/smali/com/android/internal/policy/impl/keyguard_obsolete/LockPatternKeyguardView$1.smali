@@ -27,7 +27,6 @@
     .parameter
 
     .prologue
-    .line 197
     iput-object p1, p0, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$1;->this$0:Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -41,7 +40,6 @@
     .locals 4
 
     .prologue
-    .line 199
     iget-object v2, p0, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$1;->this$0:Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;
 
     #getter for: Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;->mMode:Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$Mode;
@@ -49,11 +47,9 @@
 
     move-result-object v1
 
-    .line 203
     .local v1, mode:Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$Mode;
     const/4 v0, 0x0
 
-    .line 204
     .local v0, dismissAfterCreation:Z
     sget-object v2, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$Mode;->UnlockScreen:Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$Mode;
 
@@ -70,13 +66,10 @@
 
     if-ne v2, v3, :cond_0
 
-    .line 206
     sget-object v1, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$Mode;->LockScreen:Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$Mode;
 
-    .line 207
     const/4 v0, 0x1
 
-    .line 209
     :cond_0
     iget-object v2, p0, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$1;->this$0:Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;
 
@@ -85,16 +78,13 @@
     #calls: Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;->updateScreen(Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$Mode;Z)V
     invoke-static {v2, v1, v3}, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;->access$200(Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$Mode;Z)V
 
-    .line 210
     iget-object v2, p0, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$1;->this$0:Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;
 
     #calls: Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;->restoreWidgetState()V
     invoke-static {v2}, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;->access$300(Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;)V
 
-    .line 211
     if-eqz v0, :cond_1
 
-    .line 212
     iget-object v2, p0, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView$1;->this$0:Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;
 
     iget-object v2, v2, Lcom/android/internal/policy/impl/keyguard_obsolete/LockPatternKeyguardView;->mKeyguardScreenCallback:Lcom/android/internal/policy/impl/keyguard_obsolete/KeyguardScreenCallback;
@@ -103,7 +93,6 @@
 
     invoke-interface {v2, v3}, Lcom/android/internal/policy/impl/keyguard_obsolete/KeyguardScreenCallback;->keyguardDone(Z)V
 
-    .line 214
     :cond_1
     return-void
 .end method
