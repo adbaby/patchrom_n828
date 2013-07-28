@@ -2383,11 +2383,9 @@
 .end method
 
 .method protected onFinishInflate()V
-    .locals 6
+    .locals 5
 
     .prologue
-    const/4 v5, 0x0
-
     invoke-super {p0}, Lcom/android/internal/policy/impl/keyguard/KeyguardAbsKeyInputView;->onFinishInflate()V
 
     const v3, 0x20e0041
@@ -2415,7 +2413,9 @@
     .local v2, pinDelete:Landroid/view/View;
     if-eqz v2, :cond_1
 
-    invoke-virtual {v2, v5}, Landroid/view/View;->setVisibility(I)V
+    const/4 v3, 0x0
+
+    invoke-virtual {v2, v3}, Landroid/view/View;->setVisibility(I)V
 
     new-instance v3, Lcom/android/internal/policy/impl/keyguard/KeyguardSimPinPukView$3;
 
@@ -2447,10 +2447,6 @@
     iget-object v3, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardSimPinPukView;->mPasswordEntry:Landroid/widget/TextView;
 
     invoke-virtual {v3}, Landroid/widget/TextView;->requestFocus()Z
-
-    iget-object v3, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardSimPinPukView;->mSecurityMessageDisplay:Lcom/android/internal/policy/impl/keyguard/SecurityMessageDisplay;
-
-    invoke-interface {v3, v5}, Lcom/android/internal/policy/impl/keyguard/SecurityMessageDisplay;->setTimeout(I)V
 
     const v3, 0x20e003f
 
