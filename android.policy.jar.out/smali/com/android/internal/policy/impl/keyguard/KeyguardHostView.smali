@@ -18,8 +18,6 @@
 # static fields
 .field static final APPWIDGET_HOST_ID:I = 0x4b455947
 
-.field private static final BACKGROUND_COLOR:I = 0x70000000
-
 .field public static DEBUG:Z = false
 
 .field private static DUAL_BATTERY_MODE:Z = false
@@ -96,8 +94,6 @@
 
 .field private mSecurityViewContainer:Lcom/android/internal/policy/impl/keyguard/KeyguardSecurityViewFlipper;
 
-.field private mShowLockScreenWallpaper:I
-
 .field protected mShowSecurityWhenReturn:Z
 
 .field private mSlidingChallengeLayout:Lcom/android/internal/policy/impl/keyguard/SlidingChallengeLayout;
@@ -119,7 +115,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .locals 2
 
     .prologue
     const/4 v0, 0x1
@@ -139,32 +135,6 @@
     move-result v0
 
     sput-boolean v0, Lcom/android/internal/policy/impl/keyguard/KeyguardHostView;->IS_Tablet:Z
-
-    new-instance v0, Ljava/io/File;
-
-    const-string v1, "/data/system/users"
-
-    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-
-    sput-object v0, Lcom/android/internal/policy/impl/keyguard/KeyguardHostView;->WALLPAPER_DIR:Ljava/io/File;
-
-    new-instance v0, Ljava/io/File;
-
-    sget-object v1, Lcom/android/internal/policy/impl/keyguard/KeyguardHostView;->WALLPAPER_DIR:Ljava/io/File;
-
-    const-string v2, "lockScreenWallpaper"
-
-    invoke-direct {v0, v1, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
-
-    sput-object v0, Lcom/android/internal/policy/impl/keyguard/KeyguardHostView;->LOCKSCREEN_WALLPAPER_FILE:Ljava/io/File;
-
-    const/4 v0, 0x0
-
-    sput-object v0, Lcom/android/internal/policy/impl/keyguard/KeyguardHostView;->mWallPaper:Landroid/graphics/Bitmap;
-
-    const/4 v0, 0x0
-
-    sput-boolean v0, Lcom/android/internal/policy/impl/keyguard/KeyguardHostView;->DUAL_BATTERY_MODE:Z
 
     return-void
 .end method
