@@ -78,6 +78,6 @@ include $(PORT_BUILD)/porting.mk
 # To define any local-target
 local-zip-misc:
 	rm -rf $(ZIP_DIR)/system/backup/
-	rm $(ZIP_DIR)/system/framework/theme-res-mint.apk
-	rm $(ZIP_DIR)/system/framework/theme-res-mocha.apk
-	rm $(ZIP_DIR)/system/framework/theme-res-raspberry.apk
+	#rm $(ZIP_DIR)/system/framework/theme-res-mint.apk
+	#rm $(ZIP_DIR)/system/framework/theme-res-mocha.apk
+	#rm $(ZIP_DIR)/system/framework/theme-res-raspberry.apk
